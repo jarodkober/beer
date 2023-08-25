@@ -1,4 +1,16 @@
 {
-	"beers": [],
+	"beers": [
+		{
+			"id": 1,
+			"abv": "12.8",
+			"brewery": "Bottle Logic Brewing",
+			"location": "Beer Fridge",
+			"name": "Finite Universe (2023)",
+			"quantity": 1,
+			"size": "500ml",
+			"stylePrimary": "Stout",
+			"styleSecondary": "Imperial / Double Pastry"
+		}
+	],
 	"users": []
 }
