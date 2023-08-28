@@ -1,5 +1,7 @@
 import { useAddBeerMutation, useGetBeersQuery } from '../store';
 import { useState } from 'react';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
 
 function BeersList() {
 	const [state, setState] = useState({
@@ -34,20 +36,7 @@ function BeersList() {
 	} else if (error) {
 		// TODO: Add error handling here
 	} else {
-		content = data.map((beer) => {
-			return (
-				<tr key={beer.id}>
-					<td>{beer.name}</td>
-					<td>{beer.brewery}</td>
-					<td>{beer.stylePrimary}</td>
-					<td>{beer.styleSecondary}</td>
-					<td>{beer.location}</td>
-					<td>{beer.abv}</td>
-					<td>{beer.size}</td>
-					<td>{beer.quantity}</td>
-				</tr>
-			);
-		});
+		content = data;
 	}
 
 	return (
@@ -112,9 +101,40 @@ function BeersList() {
 				<button>Add Beer</button>
 			</form>
 
-			<table>
-				<tbody>{content}</tbody>
-			</table>
+			<DataTable value={content}>
+				<Column
+					field="name"
+					header="Beer Name"
+				></Column>
+				<Column
+					field="brewery"
+					header="Brewery"
+				></Column>
+				<Column
+					field="stylePrimary"
+					header="Style (Primary)"
+				></Column>
+				<Column
+					field="styleSecondary"
+					header="Style (Secondary)"
+				></Column>
+				<Column
+					field="location"
+					header="Location"
+				></Column>
+				<Column
+					field="abv"
+					header="ABV"
+				></Column>
+				<Column
+					field="size"
+					header="Size (ml)"
+				></Column>
+				<Column
+					field="quantity"
+					header="Qty"
+				></Column>
+			</DataTable>
 		</>
 	);
 }
