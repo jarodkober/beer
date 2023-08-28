@@ -7,7 +7,27 @@ const beersApi = createApi({
 	reducerPath: 'beers',
 	endpoints(builder) {
 		return {
+			addBeer: builder.mutation({
+				invalidatesTags: ['Beers'],
+				query: (beer) => {
+					return {
+						body: {
+							abv: beer.abv,
+							brewery: beer.brewery,
+							location: beer.location,
+							name: beer.name,
+							quantity: beer.quantity,
+							size: beer.size,
+							stylePrimary: beer.stylePrimary,
+							styleSecondary: beer.styleSecondary
+						},
+						method: 'POST',
+						url: '/beers'
+					};
+				}
+			}),
 			getBeers: builder.query({
+				providesTags: ['Beers'],
 				query: () => {
 					return {
 						method: 'GET',
@@ -19,5 +39,5 @@ const beersApi = createApi({
 	}
 });
 
-export const { useGetBeersQuery } = beersApi;
+export const { useAddBeerMutation, useGetBeersQuery } = beersApi;
 export { beersApi };

@@ -13,4 +13,4 @@ export const store = configureStore({
 
 setupListeners(store.dispatch);
 
-export { useGetBeersQuery } from './apis/beersApi';
+export { useAddBeerMutation, useGetBeersQuery } from './apis/beersApi';
