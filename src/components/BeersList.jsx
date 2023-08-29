@@ -82,21 +82,21 @@ function BeersList() {
 					name="abv"
 					onChange={handleChange}
 					type="number"
-					value={state.abv}
+					value={state.abv || ''}
 				/>
 				<label>Size (ml)</label>
 				<input
 					name="size"
 					onChange={handleChange}
 					type="number"
-					value={state.size}
+					value={state.size || ''}
 				/>
 				<label>Quantity</label>
 				<input
 					name="quantity"
 					onChange={handleChange}
 					type="number"
-					value={state.quantity}
+					value={state.quantity || ''}
 				/>
 				<button>Add Beer</button>
 			</form>
