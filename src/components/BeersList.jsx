@@ -26,7 +26,10 @@ function BeersList() {
 	};
 
 	const handleChange = (event) => {
-		const value = event.target.value;
+		const value =
+			event.target.type === 'number'
+				? parseInt(event.target.value)
+				: event.target.value;
 		setState({ ...state, [event.target.name]: value });
 	};
 
