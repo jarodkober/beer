@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles/global.scss';
+import 'primeicons/primeicons.css';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import 'primereact/resources/themes/bootstrap4-dark-blue/theme.css';
