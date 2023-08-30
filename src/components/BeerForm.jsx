@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import { useAddBeerMutation } from '../store';
+import { Button } from 'primereact/button';
+import { InputNumber } from 'primereact/inputnumber';
+import { InputText } from 'primereact/inputtext';
 
 function BeerForm() {
 	const [state, setState] = useState({
-		abv: 0,
+		abv: '',
 		brewery: '',
 		location: '',
 		name: '',
-		quantity: 0,
-		size: 0,
+		quantity: '',
+		size: '',
 		stylePrimary: '',
 		styleSecondary: ''
 	});
@@ -22,73 +25,92 @@ function BeerForm() {
 	};
 
 	const handleChange = (event) => {
-		const value =
-			event.target.type === 'number'
-				? parseInt(event.target.value)
-				: event.target.value;
-		setState({ ...state, [event.target.name]: value });
+		setState({ ...state, [event.target.id]: event.target.value });
 	};
 
 	return (
 		<form onSubmit={handleFormSubmit}>
-			<label>Beer Name</label>
-			<input
-				name="name"
-				onChange={handleChange}
-				type="text"
-				value={state.name}
+			<span className="p-float-label">
+				<InputText
+					id="name"
+					onChange={handleChange}
+					value={state.name}
+				/>
+				<label htmlFor="name">Beer Name</label>
+			</span>
+
+			<span className="p-float-label">
+				<InputText
+					id="brewery"
+					onChange={handleChange}
+					value={state.brewery}
+				/>
+				<label htmlFor="brewery">Brewery</label>
+			</span>
+
+			<span className="p-float-label">
+				<InputText
+					id="stylePrimary"
+					onChange={handleChange}
+					value={state.stylePrimary}
+				/>
+				<label htmlFor="stylePrimary">Style (Primary)</label>
+			</span>
+
+			<span className="p-float-label">
+				<InputText
+					id="styleSecondary"
+					onChange={handleChange}
+					value={state.styleSecondary}
+				/>
+				<label htmlFor="styleSecondary">Style (Secondary)</label>
+			</span>
+
+			<span className="p-float-label">
+				<InputText
+					id="location"
+					onChange={handleChange}
+					value={state.location}
+				/>
+				<label htmlFor="location">Location</label>
+			</span>
+
+			<span className="p-float-label">
+				<InputNumber
+					id="abv"
+					maxFractionDigits={2}
+					minFractionDigits={2}
+					onValueChange={handleChange}
+					suffix="%"
+					value={state.abv}
+				/>
+				<label htmlFor="abv">ABV</label>
+			</span>
+
+			<span className="p-float-label">
+				<InputNumber
+					id="size"
+					onValueChange={handleChange}
+					suffix=" ml"
+					value={state.size}
+				/>
+				<label htmlFor="size">Size (ml)</label>
+			</span>
+
+			<span className="p-float-label">
+				<InputNumber
+					id="quantity"
+					min={1}
+					onValueChange={handleChange}
+					value={state.quantity}
+				/>
+				<label htmlFor="quantity">Quantity</label>
+			</span>
+
+			<Button
+				icon="pi pi-plus"
+				label="Add Beer"
 			/>
-			<label>Brewery</label>
-			<input
-				name="brewery"
-				onChange={handleChange}
-				type="text"
-				value={state.brewery}
-			/>
-			<label>Style (Primary)</label>
-			<input
-				name="stylePrimary"
-				onChange={handleChange}
-				type="text"
-				value={state.stylePrimary}
-			/>
-			<label>Style (Secondary)</label>
-			<input
-				name="styleSecondary"
-				onChange={handleChange}
-				type="text"
-				value={state.styleSecondary}
-			/>
-			<label>Location</label>
-			<input
-				name="location"
-				onChange={handleChange}
-				type="text"
-				value={state.location}
-			/>
-			<label>ABV</label>
-			<input
-				name="abv"
-				onChange={handleChange}
-				step="0.01"
-				type="number"
-				value={state.abv || ''}
-			/>
-			<label>Size (ml)</label>
-			<input
-				name="size"
-				onChange={handleChange}
-				type="number"
-				value={state.size || ''}
-			/>
-			<label>Quantity</label>
-			<input
-				name="quantity"
-				onChange={handleChange}
-				type="number"
-				value={state.quantity || ''}
-			/>
-			<button>Add Beer</button>
 		</form>
 	);
 }
