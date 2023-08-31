@@ -18,7 +18,8 @@ function BeerForm({ onHide }) {
 		quantity: '',
 		size: '',
 		stylePrimary: '',
-		styleSecondary: ''
+		styleSecondary: '',
+		vintage: ''
 	});
 
 	const [addBeer, results] = useAddBeerMutation();
@@ -48,6 +49,16 @@ function BeerForm({ onHide }) {
 					value={state.name}
 				/>
 				<label htmlFor="name">Beer Name</label>
+			</span>
+
+			<span className="p-float-label">
+				<InputNumber
+					id="vintage"
+					min={1900}
+					onValueChange={handleChange}
+					value={state.vintage}
+				/>
+				<label htmlFor="vintage">Vintage</label>
 			</span>
 
 			<span className="p-float-label">

@@ -22,6 +22,10 @@ function BeerTable() {
 					header="Beer Name"
 				></Column>
 				<Column
+					field="vintage"
+					header="Vintage"
+				></Column>
+				<Column
 					field="brewery"
 					header="Brewery"
 				></Column>

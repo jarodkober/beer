@@ -19,7 +19,8 @@ const beersApi = createApi({
 							quantity: beer.quantity,
 							size: beer.size,
 							stylePrimary: beer.stylePrimary,
-							styleSecondary: beer.styleSecondary
+							styleSecondary: beer.styleSecondary,
+							vintage: beer.vintage
 						},
 						method: 'POST',
 						url: '/beers'
