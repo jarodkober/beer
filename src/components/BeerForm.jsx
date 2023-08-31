@@ -3,8 +3,13 @@ import { useAddBeerMutation } from '../store';
 import { Button } from 'primereact/button';
 import { InputNumber } from 'primereact/inputnumber';
 import { InputText } from 'primereact/inputtext';
+import { PropTypes } from 'prop-types';
 
 function BeerForm({ onHide }) {
+	BeerForm.propTypes = {
+		onHide: PropTypes.func
+	};
+
 	const [state, setState] = useState({
 		abv: '',
 		brewery: '',
@@ -32,7 +37,7 @@ function BeerForm({ onHide }) {
 		if (results.isSuccess) {
 			onHide();
 		}
-	}, [results]);
+	}, [onHide, results]);
 
 	return (
 		<form onSubmit={handleFormSubmit}>
