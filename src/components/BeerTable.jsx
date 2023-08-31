@@ -18,39 +18,35 @@ function BeerTable() {
 		<>
 			<DataTable value={content}>
 				<Column
-					field="name"
+					field="beer_name"
 					header="Beer Name"
 				></Column>
 				<Column
-					field="vintage"
+					field="beer_vintage"
 					header="Vintage"
 				></Column>
 				<Column
-					field="brewery"
+					field="brewery_name"
 					header="Brewery"
 				></Column>
 				<Column
-					field="stylePrimary"
+					field="beer_style"
 					header="Style (Primary)"
 				></Column>
 				<Column
-					field="styleSecondary"
-					header="Style (Secondary)"
-				></Column>
-				<Column
-					field="location"
+					field="cellar_name"
 					header="Location"
 				></Column>
 				<Column
-					field="abv"
+					field="beer_abv"
 					header="ABV"
 				></Column>
 				<Column
-					field="size"
+					field="beer_size"
 					header="Size (ml)"
 				></Column>
 				<Column
-					field="quantity"
+					field="beer_quantity"
 					header="Qty"
 				></Column>
 			</DataTable>

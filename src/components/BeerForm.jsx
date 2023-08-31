@@ -13,28 +13,22 @@ function BeerForm({ onHide }) {
 	};
 
 	const defaultValues = {
-		abv: '',
-		brewery: '',
-		location: '',
-		name: '',
-		quantity: '',
-		size: '',
-		stylePrimary: '',
-		styleSecondary: '',
-		vintage: ''
+		beer_abv: '',
+		beer_name: '',
+		beer_quantity: '',
+		beer_size: '',
+		beer_style: '',
+		beer_vintage: '',
+		brewery_name: '',
+		cellar_name: ''
 	};
 
 	const {
 		control,
 		formState: { errors },
 		handleSubmit,
-		reset,
-		watch
+		reset
 	} = useForm({ defaultValues });
-
-	console.log(watch('name'));
-
-	console.log(watch('vintage'));
 
 	const [addBeer, results] = useAddBeerMutation();
 
@@ -63,7 +57,7 @@ function BeerForm({ onHide }) {
 			<div className="field">
 				<span className="p-float-label">
 					<Controller
-						name="name"
+						name="beer_name"
 						control={control}
 						rules={{
 							required: 'A beer name is required.'
@@ -83,19 +77,19 @@ function BeerForm({ onHide }) {
 					/>
 					<label
 						className={classNames({ 'p-error': errors.name })}
-						htmlFor="name"
+						htmlFor="beer_name"
 					>
 						Beer Name
 					</label>
 				</span>
 
-				{getFormErrorMessage('name')}
+				{getFormErrorMessage('beer_name')}
 			</div>
 
 			<div className="field">
 				<span className="p-float-label">
 					<Controller
-						name="vintage"
+						name="beer_vintage"
 						control={control}
 						rules={{
 							validate: (value) =>
@@ -122,19 +116,19 @@ function BeerForm({ onHide }) {
 					/>
 					<label
 						className={classNames({ 'p-error': errors.name })}
-						htmlFor="vintage"
+						htmlFor="beer_vintage"
 					>
 						Vintage Year
 					</label>
 				</span>
 
-				{getFormErrorMessage('vintage')}
+				{getFormErrorMessage('beer_vintage')}
 			</div>
 
 			<div className="field">
 				<span className="p-float-label">
 					<Controller
-						name="brewery"
+						name="brewery_name"
 						control={control}
 						rules={{
 							required: 'A brewery name is required.'
@@ -153,19 +147,19 @@ function BeerForm({ onHide }) {
 					/>
 					<label
 						className={classNames({ 'p-error': errors.name })}
-						htmlFor="brewery"
+						htmlFor="brewery_name"
 					>
 						Brewery
 					</label>
 				</span>
 
-				{getFormErrorMessage('brewery')}
+				{getFormErrorMessage('brewery_name')}
 			</div>
 
 			<div className="field">
 				<span className="p-float-label">
 					<Controller
-						name="stylePrimary"
+						name="beer_style"
 						control={control}
 						rules={{
 							required: 'A primary beer style is required.'
@@ -184,50 +178,19 @@ function BeerForm({ onHide }) {
 					/>
 					<label
 						className={classNames({ 'p-error': errors.name })}
-						htmlFor="stylePrimary"
+						htmlFor="beer_style"
 					>
 						Style (Primary)
 					</label>
 				</span>
 
-				{getFormErrorMessage('stylePrimary')}
+				{getFormErrorMessage('beer_style')}
 			</div>
 
 			<div className="field">
 				<span className="p-float-label">
 					<Controller
-						name="styleSecondary"
-						control={control}
-						rules={{
-							required: 'A secondary beer style is required.'
-						}}
-						render={({ field, fieldState }) => (
-							<>
-								<InputText
-									className={classNames({
-										'p-invalid': fieldState.invalid
-									})}
-									id={field.name}
-									{...field}
-								/>
-							</>
-						)}
-					/>
-					<label
-						className={classNames({ 'p-error': errors.name })}
-						htmlFor="styleSecondary"
-					>
-						Style (Secondary)
-					</label>
-				</span>
-
-				{getFormErrorMessage('styleSecondary')}
-			</div>
-
-			<div className="field">
-				<span className="p-float-label">
-					<Controller
-						name="location"
+						name="cellar_name"
 						control={control}
 						rules={{
 							required: 'A beer cellar location is required.'
@@ -246,19 +209,19 @@ function BeerForm({ onHide }) {
 					/>
 					<label
 						className={classNames({ 'p-error': errors.name })}
-						htmlFor="location"
+						htmlFor="cellar_name"
 					>
 						Location
 					</label>
 				</span>
 
-				{getFormErrorMessage('location')}
+				{getFormErrorMessage('cellar_name')}
 			</div>
 
 			<div className="field">
 				<span className="p-float-label">
 					<Controller
-						name="abv"
+						name="beer_abv"
 						control={control}
 						rules={{}}
 						render={({ field, fieldState }) => (
@@ -282,19 +245,19 @@ function BeerForm({ onHide }) {
 					/>
 					<label
 						className={classNames({ 'p-error': errors.name })}
-						htmlFor="abv"
+						htmlFor="beer_abv"
 					>
 						ABV
 					</label>
 				</span>
 
-				{getFormErrorMessage('abv')}
+				{getFormErrorMessage('beer_abv')}
 			</div>
 
 			<div className="field">
 				<span className="p-float-label">
 					<Controller
-						name="size"
+						name="beer_size"
 						control={control}
 						rules={{}}
 						render={({ field, fieldState }) => (
@@ -315,19 +278,19 @@ function BeerForm({ onHide }) {
 					/>
 					<label
 						className={classNames({ 'p-error': errors.name })}
-						htmlFor="size"
+						htmlFor="beer_size"
 					>
 						Size
 					</label>
 				</span>
 
-				{getFormErrorMessage('size')}
+				{getFormErrorMessage('beer_size')}
 			</div>
 
 			<div className="field">
 				<span className="p-float-label">
 					<Controller
-						name="quantity"
+						name="beer_quantity"
 						control={control}
 						rules={{}}
 						render={({ field, fieldState }) => (
@@ -348,13 +311,13 @@ function BeerForm({ onHide }) {
 					/>
 					<label
 						className={classNames({ 'p-error': errors.name })}
-						htmlFor="quantity"
+						htmlFor="beer_quantity"
 					>
 						Quantity
 					</label>
 				</span>
 
-				{getFormErrorMessage('quantity')}
+				{getFormErrorMessage('beer_quantity')}
 			</div>
 
 			<Button

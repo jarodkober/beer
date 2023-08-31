@@ -12,15 +12,14 @@ const beersApi = createApi({
 				query: (beer) => {
 					return {
 						body: {
-							abv: beer.abv,
-							brewery: beer.brewery,
-							location: beer.location,
-							name: beer.name,
-							quantity: beer.quantity,
-							size: beer.size,
-							stylePrimary: beer.stylePrimary,
-							styleSecondary: beer.styleSecondary,
-							vintage: beer.vintage
+							beer_abv: beer.beer_abv,
+							beer_name: beer.beer_name,
+							beer_quantity: beer.beer_quantity,
+							beer_size: beer.beer_size,
+							beer_style: beer.beer_style,
+							beer_vintage: beer.beer_vintage,
+							brewery_name: beer.brewery_name,
+							cellar_name: beer.cellar_name
 						},
 						method: 'POST',
 						url: '/beers'
