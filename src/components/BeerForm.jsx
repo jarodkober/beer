@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAddBeerMutation } from '../store';
 import { Button } from 'primereact/button';
 import { InputNumber } from 'primereact/inputnumber';
 import { InputText } from 'primereact/inputtext';
 
-function BeerForm() {
+function BeerForm({ onHide }) {
 	const [state, setState] = useState({
 		abv: '',
 		brewery: '',
@@ -16,7 +16,7 @@ function BeerForm() {
 		styleSecondary: ''
 	});
 
-	const [addBeer] = useAddBeerMutation();
+	const [addBeer, results] = useAddBeerMutation();
 
 	const handleFormSubmit = (event) => {
 		event.preventDefault();
@@ -27,6 +27,12 @@ function BeerForm() {
 	const handleChange = (event) => {
 		setState({ ...state, [event.target.id]: event.target.value });
 	};
+
+	useEffect(() => {
+		if (results.isSuccess) {
+			onHide();
+		}
+	}, [results]);
 
 	return (
 		<form onSubmit={handleFormSubmit}>

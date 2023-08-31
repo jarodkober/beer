@@ -19,7 +19,7 @@ function BeerButton() {
 				style={{ width: '50vw' }}
 				onHide={() => setVisible(false)}
 			>
-				<BeerForm />
+				<BeerForm onHide={() => setVisible(false)} />
 			</Dialog>
 		</>
 	);
