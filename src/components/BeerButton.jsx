@@ -14,7 +14,7 @@ function BeerButton() {
 				onClick={() => setVisible(true)}
 			/>
 			<Dialog
-				header="Header"
+				header="Add a Beer to My Cellar"
 				visible={visible}
 				style={{ width: '50vw' }}
 				onHide={() => setVisible(false)}
