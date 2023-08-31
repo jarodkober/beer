@@ -223,7 +223,11 @@ function BeerForm({ onHide }) {
 					<Controller
 						name="beer_abv"
 						control={control}
-						rules={{}}
+						rules={{
+							validate: (value) =>
+								(value >= 0 && value <= 100) ||
+								'Enter a valid percentage.'
+						}}
 						render={({ field, fieldState }) => (
 							<>
 								<InputNumber
@@ -231,8 +235,8 @@ function BeerForm({ onHide }) {
 									inputClassName={classNames({
 										'p-invalid': fieldState.invalid
 									})}
-									maxFractionDigits={2}
-									minFractionDigits={2}
+									maxFractionDigits={1}
+									minFractionDigits={1}
 									onBlur={field.onBlur}
 									onValueChange={(e) => field.onChange(e)}
 									ref={field.ref}
