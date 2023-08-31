@@ -162,7 +162,7 @@ function BeerForm({ onHide }) {
 						name="beer_style"
 						control={control}
 						rules={{
-							required: 'A primary beer style is required.'
+							required: 'A beer style is required.'
 						}}
 						render={({ field, fieldState }) => (
 							<>
