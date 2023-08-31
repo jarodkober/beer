@@ -4,7 +4,7 @@ import BeerTable from './components/BeerTable';
 function App() {
 	return (
 		<div>
-			<h1>Beer Inventory</h1>
+			<h1>Beer Cellar Management</h1>
 			<BeerButton />
 			<BeerTable />
 		</div>
