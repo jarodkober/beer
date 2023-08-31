@@ -31,11 +31,11 @@ function BeerTable() {
 				></Column>
 				<Column
 					field="beer_style"
-					header="Style (Primary)"
+					header="Style"
 				></Column>
 				<Column
 					field="cellar_name"
-					header="Location"
+					header="Cellar"
 				></Column>
 				<Column
 					field="beer_abv"
