@@ -1,13 +1,18 @@
-import BeerButton from './components/BeerButton';
+import BeerButton from './components/beerButton/BeerButton';
 import BeerTable from './components/BeerTable';
+import Footer from './components/footer/Footer';
+import Header from './components/header/Header';
 
 function App() {
 	return (
-		<div>
-			<h1>Beer Cellar Management</h1>
-			<BeerButton />
-			<BeerTable />
-		</div>
+		<>
+			<Header />
+			<main>
+				<BeerButton />
+				<BeerTable />
+				<Footer />
+			</main>
+		</>
 	);
 }
 

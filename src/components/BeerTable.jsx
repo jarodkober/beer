@@ -15,7 +15,7 @@ function BeerTable() {
 	}
 
 	return (
-		<>
+		<section>
 			<DataTable value={content}>
 				<Column
 					field="beer_name"
@@ -50,7 +50,7 @@ function BeerTable() {
 					header="Qty"
 				></Column>
 			</DataTable>
-		</>
+		</section>
 	);
 }
 
