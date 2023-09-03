@@ -16,38 +16,49 @@ function BeerTable() {
 
 	return (
 		<section>
-			<DataTable value={content}>
+			<DataTable
+				sortMode="multiple"
+				value={content}
+			>
 				<Column
 					field="beer_name"
 					header="Beer Name"
+					sortable
 				></Column>
 				<Column
 					field="beer_vintage"
 					header="Vintage"
+					sortable
 				></Column>
 				<Column
 					field="brewery_name"
 					header="Brewery"
+					sortable
 				></Column>
 				<Column
 					field="beer_style"
 					header="Style"
+					sortable
 				></Column>
 				<Column
 					field="cellar_name"
 					header="Cellar"
+					sortable
 				></Column>
 				<Column
 					field="beer_abv"
 					header="ABV"
+					sortable
 				></Column>
 				<Column
 					field="beer_size"
 					header="Size (ml)"
+					sortable
 				></Column>
 				<Column
 					field="beer_quantity"
 					header="Qty"
+					sortable
 				></Column>
 			</DataTable>
 		</section>
