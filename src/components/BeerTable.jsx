@@ -18,6 +18,7 @@ function BeerTable() {
 		<section>
 			<DataTable
 				sortMode="multiple"
+				stripedRows
 				value={content}
 			>
 				<Column
