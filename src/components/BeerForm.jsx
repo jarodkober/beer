@@ -47,6 +47,21 @@ function BeerForm({ onHide }) {
 		);
 	};
 
+	const quantities = [
+		{ label: '1', value: 1 },
+		{ label: '2', value: 2 },
+		{ label: '3', value: 3 },
+		{ label: '4', value: 4 },
+		{ label: '5', value: 5 },
+		{ label: '6', value: 6 },
+		{ label: '7', value: 7 },
+		{ label: '8', value: 8 },
+		{ label: '9', value: 9 },
+		{ label: '10', value: 10 },
+		{ label: '11', value: 11 },
+		{ label: '12', value: 12 }
+	];
+
 	// TODO: Shift the list of beer styles into a data file
 	const beer_styles = [
 		'Altbier',
@@ -544,20 +559,13 @@ function BeerForm({ onHide }) {
 						name="beer_quantity"
 						control={control}
 						rules={{}}
-						render={({ field, fieldState }) => (
-							<>
-								<InputNumber
-									id={field.name}
-									inputClassName={classNames({
-										'p-invalid': fieldState.invalid
-									})}
-									min={1}
-									onBlur={field.onBlur}
-									onValueChange={(e) => field.onChange(e)}
-									ref={field.ref}
-									value={field.value}
-								/>
-							</>
+						render={({ field }) => (
+							<Dropdown
+								id={field.name}
+								onChange={(e) => field.onChange(e.value)}
+								options={quantities}
+								value={field.value}
+							/>
 						)}
 					/>
 					<label
