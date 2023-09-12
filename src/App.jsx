@@ -1,5 +1,5 @@
 import BeerButton from './components/beerButton/BeerButton';
-import BeerTable from './components/BeerTable';
+import BeerTable from './components/beerTable/BeerTable';
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
 
@@ -10,8 +10,8 @@ function App() {
 			<main>
 				<BeerButton />
 				<BeerTable />
-				<Footer />
 			</main>
+			<Footer />
 		</>
 	);
 }

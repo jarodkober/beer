@@ -1,4 +1,5 @@
-import { useGetBeersQuery } from '../store';
+import styles from './BeerTable.module.scss';
+import { useGetBeersQuery } from '../../store';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 
@@ -15,11 +16,14 @@ function BeerTable() {
 	}
 
 	return (
-		<section>
+		<section className={styles.beerTable}>
 			<DataTable
 				filterDisplay="row"
+				scrollable
+				scrollHeight="flex"
 				sortMode="multiple"
 				stripedRows
+				style={{ overflow: 'hidden' }}
 				value={content}
 			>
 				<Column
