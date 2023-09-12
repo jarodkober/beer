@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './BeerButton.module.scss';
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
-import BeerForm from '../BeerForm';
+import BeerForm from '../beerForm/BeerForm';
 
 function BeerButton() {
 	const [visible, setVisible] = useState(false);

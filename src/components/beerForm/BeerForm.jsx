@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import { useAddBeerMutation } from '../store';
+import styles from './BeerForm.module.scss';
+import { useAddBeerMutation } from '../../store';
 import { Button } from 'primereact/button';
 import { Dropdown } from 'primereact/dropdown';
 import { InputNumber } from 'primereact/inputnumber';
@@ -317,7 +318,10 @@ function BeerForm({ onHide }) {
 	}, [onHide, results]);
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)}>
+		<form
+			className={styles.beerForm}
+			onSubmit={handleSubmit(onSubmit)}
+		>
 			<div className="field">
 				<span className="p-float-label">
 					<Controller
