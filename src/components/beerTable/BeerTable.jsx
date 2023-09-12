@@ -2,21 +2,22 @@ import styles from './BeerTable.module.scss';
 import { useGetBeersQuery } from '../../store';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
+import { Skeleton } from 'primereact/skeleton';
 
 function BeerTable() {
 	const { data, error, isLoading } = useGetBeersQuery();
 
+	const skeletonContent = () => {
+		return <Skeleton height="1rem"></Skeleton>;
+	};
+
+	const skeletonRows = Array.from({ length: 25 }, (v, i) => i);
+
 	let content;
-	if (isLoading) {
-		// TODO: Add skeleton here
-	} else if (error) {
+	if (error) {
 		// TODO: Add error handling here
 	} else {
-		content = data;
-	}
-
-	return (
-		<section className={styles.beerTable}>
+		content = (
 			<DataTable
 				filterDisplay="row"
 				scrollable
@@ -24,9 +25,10 @@ function BeerTable() {
 				sortMode="multiple"
 				stripedRows
 				style={{ overflow: 'hidden' }}
-				value={content}
+				value={isLoading ? skeletonRows : data}
 			>
 				<Column
+					body={isLoading && skeletonContent}
 					field="beer_name"
 					filter
 					filterMatchMode="contains"
@@ -35,6 +37,7 @@ function BeerTable() {
 					sortable
 				></Column>
 				<Column
+					body={isLoading && skeletonContent}
 					field="beer_vintage"
 					filter
 					filterPlaceholder="Filter by Vintage"
@@ -42,6 +45,7 @@ function BeerTable() {
 					sortable
 				></Column>
 				<Column
+					body={isLoading && skeletonContent}
 					field="brewery_name"
 					filter
 					filterMatchMode="contains"
@@ -50,6 +54,7 @@ function BeerTable() {
 					sortable
 				></Column>
 				<Column
+					body={isLoading && skeletonContent}
 					field="beer_style"
 					filter
 					filterMatchMode="contains"
@@ -58,6 +63,7 @@ function BeerTable() {
 					sortable
 				></Column>
 				<Column
+					body={isLoading && skeletonContent}
 					field="cellar_name"
 					filter
 					filterMatchMode="contains"
@@ -66,23 +72,28 @@ function BeerTable() {
 					sortable
 				></Column>
 				<Column
+					body={isLoading && skeletonContent}
 					field="beer_abv"
 					header="ABV"
 					sortable
 				></Column>
 				<Column
+					body={isLoading && skeletonContent}
 					field="beer_size"
 					header="Size (ml)"
 					sortable
 				></Column>
 				<Column
+					body={isLoading && skeletonContent}
 					field="beer_quantity"
 					header="Qty"
 					sortable
 				></Column>
 			</DataTable>
-		</section>
-	);
+		);
+	}
+
+	return <section className={styles.beerTable}>{content}</section>;
 }
 
 export default BeerTable;
