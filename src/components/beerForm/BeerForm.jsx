@@ -584,6 +584,7 @@ function BeerForm({ onHide }) {
 			</div>
 
 			<Button
+				disabled={results.isLoading}
 				icon="pi pi-plus"
 				label="Add Beer"
 			/>
