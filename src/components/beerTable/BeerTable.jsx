@@ -1,11 +1,15 @@
+import { useEffect, useRef } from 'react';
 import styles from './BeerTable.module.scss';
 import { useGetBeersQuery } from '../../store';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import { Skeleton } from 'primereact/skeleton';
+import { Toast } from 'primereact/toast';
 
 function BeerTable() {
 	const { data, error, isLoading } = useGetBeersQuery();
+
+	const toast = useRef(null);
 
 	const skeletonContent = () => {
 		return <Skeleton height="1rem"></Skeleton>;
@@ -13,11 +17,20 @@ function BeerTable() {
 
 	const skeletonRows = Array.from({ length: 25 }, (v, i) => i);
 
-	let content;
-	if (error) {
-		// TODO: Add error handling here
-	} else {
-		content = (
+	useEffect(() => {
+		error &&
+			toast.current.show({
+				severity: 'error',
+				summary: 'Error',
+				detail: 'Error loading beers.',
+				sticky: true
+			});
+	}, [error]);
+
+	return (
+		<section className={styles.beerTable}>
+			<Toast ref={toast} />
+
 			<DataTable
 				filterDisplay="row"
 				scrollable
@@ -90,10 +103,8 @@ function BeerTable() {
 					sortable
 				></Column>
 			</DataTable>
-		);
-	}
-
-	return <section className={styles.beerTable}>{content}</section>;
+		</section>
+	);
 }
 
 export default BeerTable;
