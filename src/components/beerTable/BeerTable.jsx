@@ -5,6 +5,7 @@ import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import { Skeleton } from 'primereact/skeleton';
 import { Toast } from 'primereact/toast';
+import DrinkBeer from '../drinkBeer/DrinkBeer';
 
 function BeerTable() {
 	const { data, error, isLoading } = useGetBeersQuery();
@@ -13,6 +14,17 @@ function BeerTable() {
 
 	const skeletonContent = () => {
 		return <Skeleton height="1rem"></Skeleton>;
+	};
+
+	const editTemplate = (beer) => {
+		return (
+			<DrinkBeer
+				disabled={beer.beer_quantity < 1}
+				id={beer.id}
+				key={beer.id}
+				quantity={beer.beer_quantity}
+			></DrinkBeer>
+		);
 	};
 
 	const skeletonRows = Array.from({ length: 25 }, (v, i) => i);
@@ -101,6 +113,11 @@ function BeerTable() {
 					field="beer_quantity"
 					header="Qty"
 					sortable
+				></Column>
+				<Column
+					body={editTemplate}
+					field="edit_buttons"
+					header="Cheers!"
 				></Column>
 			</DataTable>
 		</section>

@@ -26,6 +26,19 @@ const beersApi = createApi({
 					};
 				}
 			}),
+			drinkBeer: builder.mutation({
+				invalidatesTags: ['Beers'],
+				query: ({ id, quantity }) => {
+					return {
+						body: {
+							beer_quantity: quantity,
+							id
+						},
+						method: 'PATCH',
+						url: `/beers/${id}`
+					};
+				}
+			}),
 			getBeers: builder.query({
 				providesTags: ['Beers'],
 				query: () => {
@@ -39,5 +52,6 @@ const beersApi = createApi({
 	}
 });
 
-export const { useAddBeerMutation, useGetBeersQuery } = beersApi;
+export const { useAddBeerMutation, useGetBeersQuery, useDrinkBeerMutation } =
+	beersApi;
 export { beersApi };
