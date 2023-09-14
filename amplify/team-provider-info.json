@@ -1,0 +1,25 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-beer-dev-135950-authRole",
+      "UnauthRoleArn": "arn:aws:iam::224171196427:role/amplify-beer-dev-135950-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::224171196427:role/amplify-beer-dev-135950-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-beer-dev-135950-deployment",
+      "UnauthRoleName": "amplify-beer-dev-135950-unauthRole",
+      "StackName": "amplify-beer-dev-135950",
+      "StackId": "arn:aws:cloudformation:us-west-2:224171196427:stack/amplify-beer-dev-135950/a60aa840-5341-11ee-9bca-029461fe4a33",
+      "AmplifyAppId": "d291sqxn3gfeh8"
+    },
+    "categories": {
+      "auth": {
+        "beerfaaec94b": {
+          "userPoolId": "us-west-2_XjBmEjqkR",
+          "userPoolName": "beer-app-cognito-user-pool",
+          "webClientId": "20k7c7e4g3g2qdtvo6nq0fd8o7",
+          "nativeClientId": "20k7c7e4g3g2qdtvo6nq0fd8o7"
+        }
+      }
+    }
+  }
+}

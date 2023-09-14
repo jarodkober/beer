@@ -7,6 +7,10 @@
 			content="width=device-width, initial-scale=1.0"
 		/>
 		<title>Beer Inventory</title>
+		<script type="text/javascript">
+			/* Temporary fix for issue between Vite and AWS Amplify SDK: https://github.com/aws-amplify/amplify-js/issues/9639#issuecomment-804386820 */
+			window.global = window;
+		</script>
 	</head>
 	<body>
 		<div id="root"></div>
