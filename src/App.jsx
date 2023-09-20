@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Amplify } from 'aws-amplify';
 import awsExports from './aws-exports';
 import {
@@ -6,10 +7,10 @@ import {
 	ThemeProvider
 } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
-import BeerButton from './components/beerButton/BeerButton';
-import BeerTable from './components/beerTable/BeerTable';
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
+import BeerPage from './pages/BeerPage';
+import CellarPage from './pages/CellarPage';
 
 Amplify.configure(awsExports);
 
@@ -26,17 +27,27 @@ function App() {
 		>
 			<Authenticator variation="modal">
 				{({ signOut, user }) => (
-					<>
+					<Router>
 						<Header
 							signOut={signOut}
 							user={user}
 						/>
 						<main>
-							<BeerButton />
-							<BeerTable />
+							<Routes>
+								<Route
+									element={<BeerPage />}
+									exact
+									path="/"
+								></Route>
+								<Route
+									element={<CellarPage />}
+									exact
+									path="/cellars"
+								></Route>
+							</Routes>
 						</main>
 						<Footer />
-					</>
+					</Router>
 				)}
 			</Authenticator>
 		</ThemeProvider>
