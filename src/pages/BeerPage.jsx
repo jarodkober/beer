@@ -1,6 +1,6 @@
 import BeerTable from '../components/beerTable/BeerTable';
 
-function HomePage() {
+function BeerPage() {
 	return (
 		<>
 			<BeerTable />
@@ -8,4 +8,4 @@ function HomePage() {
 	);
 }
 
-export default HomePage;
+export default BeerPage;
