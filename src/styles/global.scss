@@ -1,27 +1,39 @@
+@import-normalize;
+@import '../styles/mixins.scss';
+
+/// CSS RESET
+* {
+	margin: 0;
+	padding: 0;
+}
+
 body {
 	font-family: var(--font-family);
 	margin: 0;
 
-	#root {
+	.container {
 		display: grid;
 		grid-template-areas: 'header' 'main' 'footer';
 		grid-template-columns: 1fr;
 		grid-template-rows: auto 1fr auto;
 		height: 100vh;
-		padding: 15px;
+		padding: 0.5rem;
+
+		@include sm-min {
+			padding: 1rem;
+		}
 
 		& > header {
 			grid-area: header;
 		}
 
 		& > main {
-			grid-area: main;
-			overflow: auto;
-
 			display: grid;
+			grid-area: main;
 			grid-template-areas: 'button' 'table';
 			grid-template-columns: 1fr;
 			grid-template-rows: auto 1fr;
+			overflow: auto;
 
 			& section {
 				padding-block: 15px;
@@ -32,4 +44,18 @@ body {
 			grid-area: footer;
 		}
 	}
+}
+
+/// UTILITIES
+
+.sr-only {
+	border-width: 0;
+	clip: rect(0, 0, 0, 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
 }

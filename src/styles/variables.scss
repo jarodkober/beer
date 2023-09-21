@@ -1,0 +1,12 @@
+///
+/// SASS VARIABLES
+///
+
+/// RESPONSIVE BREAKPOINTS
+/// Chosen based on content for this project, not standard device dimensions
+$screen-sm-min: 650px;
+$screen-xs-max: ($screen-sm-min - 1);
+
+/// MEDIA QUERIES
+$mq-xs-max: 'only screen and (max-width:#{$screen-xs-max})';
+$mq-sm-min: 'only screen and (min-width:#{$screen-sm-min})';

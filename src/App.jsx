@@ -26,27 +26,26 @@ function App() {
 			theme={theme}
 		>
 			<Authenticator variation="modal">
-				{({ signOut, user }) => (
+				{({ signOut }) => (
 					<Router>
-						<Header
-							signOut={signOut}
-							user={user}
-						/>
-						<main>
-							<Routes>
-								<Route
-									element={<BeerPage />}
-									exact
-									path="/"
-								></Route>
-								<Route
-									element={<CellarPage />}
-									exact
-									path="/cellars"
-								></Route>
-							</Routes>
-						</main>
-						<Footer />
+						<div className="container">
+							<Header signOut={signOut} />
+							<main>
+								<Routes>
+									<Route
+										element={<BeerPage />}
+										exact
+										path="/"
+									></Route>
+									<Route
+										element={<CellarPage />}
+										exact
+										path="/cellars"
+									></Route>
+								</Routes>
+							</main>
+							<Footer />
+						</div>
 					</Router>
 				)}
 			</Authenticator>
