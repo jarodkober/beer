@@ -1,4 +1,4 @@
-# Beer Inventory App
+# My Beer Fridge
 
 This project is an application for managing a beer cellar inventory.
 
