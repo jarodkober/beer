@@ -16,6 +16,10 @@ Clone the repository and run the following command from the project directory:
 
 ### Available Scripts
 
+#### `npm run dev:server`
+
+Starts json-server, which is being used in place of a database for early development.
+
 #### `npm run dev`
 
 Runs the app in the development mode.\
