@@ -8,7 +8,7 @@ function BeerButton() {
 	const [visible, setVisible] = useState(false);
 
 	return (
-		<section className={styles.beerButton}>
+		<div className={styles.beerButton}>
 			<Button
 				icon="pi pi-plus"
 				label="Add Beer"
@@ -22,7 +22,7 @@ function BeerButton() {
 			>
 				<BeerForm onHide={() => setVisible(false)} />
 			</Dialog>
-		</section>
+		</div>
 	);
 }
 

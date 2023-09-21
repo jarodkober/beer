@@ -1,4 +1,15 @@
 .beerTable {
 	grid-area: table;
 	overflow: hidden;
+
+	.table-header {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+
+		h1 {
+			margin: 0;
+		}
+	}
 }

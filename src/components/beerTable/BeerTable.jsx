@@ -6,6 +6,7 @@ import { DataTable } from 'primereact/datatable';
 import { Skeleton } from 'primereact/skeleton';
 import { Toast } from 'primereact/toast';
 import DrinkBeer from '../drinkBeer/DrinkBeer';
+import BeerButton from '../beerButton/BeerButton';
 
 function BeerTable() {
 	const { data, error, isLoading } = useGetBeersQuery();
@@ -27,6 +28,13 @@ function BeerTable() {
 		);
 	};
 
+	const header = (
+		<div className={styles['table-header']}>
+			<h1>Beers</h1>
+			<BeerButton />
+		</div>
+	);
+
 	const skeletonRows = Array.from({ length: 25 }, (v, i) => i);
 
 	useEffect(() => {
@@ -45,6 +53,7 @@ function BeerTable() {
 
 			<DataTable
 				filterDisplay="row"
+				header={header}
 				scrollable
 				scrollHeight="flex"
 				sortMode="multiple"
@@ -58,7 +67,7 @@ function BeerTable() {
 					filter
 					filterMatchMode="contains"
 					filterPlaceholder="Filter by Beer"
-					header="Beer Name"
+					header="Name"
 					sortable
 				></Column>
 				<Column
