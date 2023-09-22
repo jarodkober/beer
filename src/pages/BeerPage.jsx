@@ -6,11 +6,7 @@ function BeerPage({ user }) {
 		user: PropTypes.object
 	};
 
-	return (
-		<>
-			<BeerTable user={user} />
-		</>
-	);
+	return <BeerTable user={user} />;
 }
 
 export default BeerPage;
