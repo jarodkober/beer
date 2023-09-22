@@ -6,8 +6,9 @@ import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import { Skeleton } from 'primereact/skeleton';
 import { Toast } from 'primereact/toast';
+import BeerForm from '../beerForm/BeerForm';
 import DrinkBeer from '../drinkBeer/DrinkBeer';
-import BeerButton from '../beerButton/BeerButton';
+import ModalTriggerButton from '../modalTriggerButton/ModalTriggerButton';
 
 function BeerTable({ user }) {
 	BeerTable.propTypes = {
@@ -36,7 +37,11 @@ function BeerTable({ user }) {
 	const header = (
 		<div className={styles['table-header']}>
 			<h1>{user.attributes.name}&rsquo;s Beers</h1>
-			<BeerButton />
+			<ModalTriggerButton
+				buttonLabel="Add Beer"
+				modalBodyComponent={<BeerForm />}
+				modalHeader="Add a Beer"
+			/>
 		</div>
 	);
 
