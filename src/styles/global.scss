@@ -30,9 +30,6 @@ body {
 		& > main {
 			display: grid;
 			grid-area: main;
-			grid-template-areas: 'button' 'table';
-			grid-template-columns: 1fr;
-			grid-template-rows: auto 1fr;
 			overflow: auto;
 
 			& section {
