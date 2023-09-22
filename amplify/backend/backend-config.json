@@ -1,6 +1,6 @@
 {
   "auth": {
-    "beerfaaec94b": {
+    "mybeerfridge45259e41": {
       "customAuth": false,
       "dependsOn": [],
       "providerPlugin": "awscloudformation",
@@ -9,35 +9,35 @@
     }
   },
   "parameters": {
-    "AMPLIFY_auth_beerfaaec94b_nativeClientId": {
+    "AMPLIFY_auth_mybeerfridge45259e41_nativeClientId": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "beerfaaec94b"
+          "resourceName": "mybeerfridge45259e41"
         }
       ]
     },
-    "AMPLIFY_auth_beerfaaec94b_userPoolId": {
+    "AMPLIFY_auth_mybeerfridge45259e41_userPoolId": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "beerfaaec94b"
+          "resourceName": "mybeerfridge45259e41"
         }
       ]
     },
-    "AMPLIFY_auth_beerfaaec94b_userPoolName": {
+    "AMPLIFY_auth_mybeerfridge45259e41_userPoolName": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "beerfaaec94b"
+          "resourceName": "mybeerfridge45259e41"
         }
       ]
     },
-    "AMPLIFY_auth_beerfaaec94b_webClientId": {
+    "AMPLIFY_auth_mybeerfridge45259e41_webClientId": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "beerfaaec94b"
+          "resourceName": "mybeerfridge45259e41"
         }
       ]
     }

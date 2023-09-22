@@ -13,11 +13,11 @@
     },
     "categories": {
       "auth": {
-        "beerfaaec94b": {
-          "userPoolId": "us-west-2_XjBmEjqkR",
-          "userPoolName": "beer-app-cognito-user-pool",
-          "webClientId": "20k7c7e4g3g2qdtvo6nq0fd8o7",
-          "nativeClientId": "20k7c7e4g3g2qdtvo6nq0fd8o7"
+        "mybeerfridge45259e41": {
+          "userPoolId": "us-west-2_g9BNQOgGa",
+          "userPoolName": "my-beer-fridge-cognito-user-pool",
+          "webClientId": "656l2iss1huemm4d0rk19prl4e",
+          "nativeClientId": "656l2iss1huemm4d0rk19prl4e"
         }
       }
     }

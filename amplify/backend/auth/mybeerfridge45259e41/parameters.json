@@ -1,15 +1,16 @@
 {
   "authSelections": "userPoolOnly",
-  "resourceName": "beerfaaec94b",
+  "resourceName": "mybeerfridge45259e41",
   "serviceType": "imported",
   "region": "us-west-2",
   "usernameAttributes": [
     "email"
   ],
   "requiredAttributes": [
+    "name",
     "email"
   ],
-  "passwordPolicyMinLength": 16,
+  "passwordPolicyMinLength": 12,
   "passwordPolicyCharacters": [
     "Requires Lowercase",
     "Requires Uppercase",
