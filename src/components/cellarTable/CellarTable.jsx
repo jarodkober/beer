@@ -29,6 +29,7 @@ function CellarTable({ user }) {
 				buttonLabel="Add Cellar"
 				modalBodyComponent={<CellarForm />}
 				modalHeader="Create a Cellar"
+				user={user}
 			/>
 		</div>
 	);

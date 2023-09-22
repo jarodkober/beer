@@ -23,4 +23,4 @@ export {
 	useDrinkBeerMutation
 } from './apis/beersApi';
 
-export { useGetCellarsQuery } from './apis/cellarsApi';
+export { useGetCellarsQuery, useAddCellarMutation } from './apis/cellarsApi';

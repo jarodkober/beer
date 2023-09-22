@@ -7,6 +7,20 @@ const cellarsApi = createApi({
 	reducerPath: 'cellars',
 	endpoints(builder) {
 		return {
+			addCellar: builder.mutation({
+				invalidatesTags: ['Cellars'],
+				query: (cellar) => {
+					return {
+						body: {
+							description: cellar.description,
+							name: cellar.name,
+							userId: cellar.userId
+						},
+						method: 'POST',
+						url: '/cellars'
+					};
+				}
+			}),
 			getCellars: builder.query({
 				providesTags: ['Cellars'],
 				query: (userId) => {
