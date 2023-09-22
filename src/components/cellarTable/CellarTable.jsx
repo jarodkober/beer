@@ -1,10 +1,13 @@
 import { useEffect, useRef } from 'react';
+import styles from './CellarTable.module.scss';
 import { PropTypes } from 'prop-types';
 import { useGetCellarsQuery } from '../../store';
 import { Skeleton } from 'primereact/skeleton';
 import { Toast } from 'primereact/toast';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
+import CellarForm from '../cellarForm/CellarForm';
+import ModalTriggerButton from '../modalTriggerButton/ModalTriggerButton';
 
 function CellarTable({ user }) {
 	CellarTable.propTypes = {
@@ -20,8 +23,13 @@ function CellarTable({ user }) {
 	};
 
 	const header = (
-		<div>
+		<div className={styles['table-header']}>
 			<h1>{user.attributes.name}&rsquo;s Cellars</h1>
+			<ModalTriggerButton
+				buttonLabel="Add Cellar"
+				modalBodyComponent={<CellarForm />}
+				modalHeader="Create a Cellar"
+			/>
 		</div>
 	);
 
@@ -38,7 +46,7 @@ function CellarTable({ user }) {
 	}, [error]);
 
 	return (
-		<section>
+		<section className={styles.table}>
 			<Toast ref={toast} />
 
 			<DataTable
