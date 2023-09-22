@@ -38,7 +38,7 @@ function App() {
 										path="/"
 									></Route>
 									<Route
-										element={<CellarPage />}
+										element={<CellarPage user={user} />}
 										exact
 										path="/cellars"
 									></Route>

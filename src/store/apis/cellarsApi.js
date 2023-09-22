@@ -1,0 +1,28 @@
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
+const cellarsApi = createApi({
+	baseQuery: fetchBaseQuery({
+		baseUrl: 'http://192.168.1.27:3005'
+	}),
+	reducerPath: 'cellars',
+	endpoints(builder) {
+		return {
+			getCellars: builder.query({
+				providesTags: ['Cellars'],
+				query: (userId) => {
+					return {
+						method: 'GET',
+						params: {
+							userId
+						},
+						url: '/cellars'
+					};
+				}
+			})
+		};
+	}
+});
+
+export const { useAddCellarMutation, useGetCellarsQuery } = cellarsApi;
+
+export { cellarsApi };
