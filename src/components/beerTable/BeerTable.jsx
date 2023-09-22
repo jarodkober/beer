@@ -53,7 +53,7 @@ function BeerTable({ user }) {
 	}, [error]);
 
 	return (
-		<section className={styles.beerTable}>
+		<section className={styles.table}>
 			<Toast ref={toast} />
 
 			<DataTable
