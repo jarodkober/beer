@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { PropTypes } from 'prop-types';
 import styles from './BeerTable.module.scss';
 import { useGetBeersQuery } from '../../store';
 import { Column } from 'primereact/column';
@@ -8,7 +9,11 @@ import { Toast } from 'primereact/toast';
 import DrinkBeer from '../drinkBeer/DrinkBeer';
 import BeerButton from '../beerButton/BeerButton';
 
-function BeerTable() {
+function BeerTable({ user }) {
+	BeerTable.propTypes = {
+		user: PropTypes.object
+	};
+
 	const { data, error, isLoading } = useGetBeersQuery();
 
 	const toast = useRef(null);
@@ -30,7 +35,7 @@ function BeerTable() {
 
 	const header = (
 		<div className={styles['table-header']}>
-			<h1>Beers</h1>
+			<h1>{user.attributes.name}&rsquo;s Beers</h1>
 			<BeerButton />
 		</div>
 	);
