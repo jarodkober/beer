@@ -91,7 +91,7 @@
     {
       "beer_abv": 12,
       "beer_name": "A Quad IPA? In this Economy?!",
-      "beer_quantity": 1,
+      "beer_quantity": 0,
       "beer_size": 473,
       "beer_style": "IPA - Quadruple",
       "beer_vintage": 2023,
