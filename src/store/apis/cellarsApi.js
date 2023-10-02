@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const cellarsApi = createApi({
 	baseQuery: fetchBaseQuery({
-		baseUrl: 'http://192.168.1.9:3005'
+		baseUrl: import.meta.env.VITE_API_BASE_URL
 	}),
 	reducerPath: 'cellars',
 	endpoints(builder) {
@@ -26,10 +26,7 @@ const cellarsApi = createApi({
 				query: (userId) => {
 					return {
 						method: 'GET',
-						params: {
-							userId
-						},
-						url: '/cellars'
+						url: `/cellars/${userId}`
 					};
 				}
 			})
