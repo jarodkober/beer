@@ -11,32 +11,37 @@ export const handler = async (event) => {
 		includeResultMetadata: true,
 		parameters: [
 			{
-				name: 'userId',
+				name: 'cellar_description',
+				value: {
+					stringValue: event.cellar_description
+				}
+			},
+			{
+				name: 'cellar_name',
+				value: {
+					stringValue: event.cellar_name
+				}
+			},
+			{
+				name: 'user_id',
 				typeHint: 'UUID',
 				value: {
-					stringValue: event.userId
+					stringValue: event.user_id
 				}
 			}
 		],
 		resourceArn: process.env.DATABASE_CLUSTER_ARN,
 		secretArn: process.env.DATABASE_CREDENTIALS_SECRETS_STORE_ARN,
-		sql: 'SELECT * FROM public.cellars WHERE cellars.user_id = :userId'
+		sql: 'INSERT INTO public.cellars (cellar_description, cellar_name, user_id) VALUES (:cellar_description, :cellar_nameZ, :user_id)'
 	};
 
 	const command = new ExecuteStatementCommand(sqlParams);
-	const response = await client.send(command);
 
-	const parseDataServiceResponse = (resp) => {
-		let columns = resp.columnMetadata.map((c) => c.name);
-		let data = resp.records.map((r) => {
-			let obj = {};
-			r.map((v, i) => {
-				obj[columns[i]] = Object.values(v)[0];
-			});
-			return obj;
-		});
-		return data;
-	};
+	try {
+		const response = await client.send(command);
+	} catch (error) {
+		error.message = 'Error Code 500: ' + error.message;
 
-	return parseDataServiceResponse(response);
+		throw error;
+	}
 };
