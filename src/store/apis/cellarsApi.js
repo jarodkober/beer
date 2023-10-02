@@ -12,9 +12,9 @@ const cellarsApi = createApi({
 				query: (cellar) => {
 					return {
 						body: {
-							description: cellar.description,
-							name: cellar.name,
-							userId: cellar.userId
+							cellar_description: cellar.cellar_description,
+							cellar_name: cellar.cellar_name,
+							user_id: cellar.user_id
 						},
 						method: 'POST',
 						url: '/cellars'
@@ -23,10 +23,10 @@ const cellarsApi = createApi({
 			}),
 			getCellars: builder.query({
 				providesTags: ['Cellars'],
-				query: (userId) => {
+				query: (user_id) => {
 					return {
 						method: 'GET',
-						url: `/cellars/${userId}`
+						url: `/cellars/${user_id}`
 					};
 				}
 			})

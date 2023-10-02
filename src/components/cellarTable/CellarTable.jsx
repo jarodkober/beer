@@ -60,7 +60,7 @@ function CellarTable({ user }) {
 			>
 				<Column
 					body={isLoading && skeletonContent}
-					field="name"
+					field="cellar_name"
 					filter
 					filterMatchMode="contains"
 					filterPlaceholder="Filter by Name"
@@ -69,7 +69,7 @@ function CellarTable({ user }) {
 				></Column>
 				<Column
 					body={isLoading && skeletonContent}
-					field="description"
+					field="cellar_description"
 					filter
 					filterMatchMode="contains"
 					filterPlaceholder="Filter by Description"

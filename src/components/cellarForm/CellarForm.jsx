@@ -15,8 +15,8 @@ function CellarForm({ onHide, user }) {
 	};
 
 	const defaultValues = {
-		description: '',
-		name: ''
+		cellar_description: '',
+		cellar_name: ''
 	};
 
 	const {
@@ -31,7 +31,7 @@ function CellarForm({ onHide, user }) {
 	const onSubmit = (data) => {
 		data = {
 			...data,
-			userId: user.username
+			user_id: user.username
 		};
 
 		addCellar(data);
@@ -62,7 +62,7 @@ function CellarForm({ onHide, user }) {
 				<span className="p-float-label">
 					<Controller
 						control={control}
-						name="name"
+						name="cellar_name"
 						rules={{
 							required: 'A cellar name is required.'
 						}}
@@ -80,7 +80,7 @@ function CellarForm({ onHide, user }) {
 					/>
 					<label
 						className={classNames({ 'p-error': errors.name })}
-						htmlFor="name"
+						htmlFor="cellar_name"
 					>
 						Name
 					</label>
@@ -93,7 +93,7 @@ function CellarForm({ onHide, user }) {
 				<span className="p-float-label">
 					<Controller
 						control={control}
-						name="description"
+						name="cellar_description"
 						render={({ field, fieldState }) => (
 							<InputTextarea
 								className={classNames({
@@ -106,7 +106,7 @@ function CellarForm({ onHide, user }) {
 					/>
 					<label
 						className={classNames({ 'p-error': errors.name })}
-						htmlFor="description"
+						htmlFor="cellar_description"
 					>
 						Description
 					</label>
