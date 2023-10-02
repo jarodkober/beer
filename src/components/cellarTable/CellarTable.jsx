@@ -39,7 +39,7 @@ function CellarTable({ user }) {
 	useEffect(() => {
 		error &&
 			toast.current.show({
-				detail: 'Error loading cellars.',
+				detail: 'An error occurred while loading your cellars. Please try again.',
 				severity: 'error',
 				sticky: true,
 				summary: 'Error'

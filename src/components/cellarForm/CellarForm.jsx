@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import styles from './CellarForm.module.scss';
 import { useAddCellarMutation } from '../../store';
 import { PropTypes } from 'prop-types';
@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from 'primereact/InputTextarea';
+import { Toast } from 'primereact/toast';
 
 function CellarForm({ onHide, user }) {
 	CellarForm.propTypes = {
@@ -27,6 +28,8 @@ function CellarForm({ onHide, user }) {
 	} = useForm({ defaultValues });
 
 	const [addCellar, results] = useAddCellarMutation();
+
+	const toast = useRef(null);
 
 	const onSubmit = (data) => {
 		data = {
@@ -51,13 +54,25 @@ function CellarForm({ onHide, user }) {
 		if (results.isSuccess) {
 			onHide();
 		}
-	}, [onHide, results]);
+	}, [onHide, results.isSuccess]);
+
+	useEffect(() => {
+		results.error &&
+			toast.current.show({
+				detail: 'An error occurred while creating your cellar. Please try again.',
+				severity: 'error',
+				sticky: true,
+				summary: 'Error'
+			});
+	}, [results.error]);
 
 	return (
 		<form
 			className={styles.form}
 			onSubmit={handleSubmit(onSubmit)}
 		>
+			<Toast ref={toast} />
+
 			<div className="field">
 				<span className="p-float-label">
 					<Controller
