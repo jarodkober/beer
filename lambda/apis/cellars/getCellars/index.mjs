@@ -11,16 +11,16 @@ export const handler = async (event) => {
 		includeResultMetadata: true,
 		parameters: [
 			{
-				name: 'userId',
+				name: 'user_id',
 				typeHint: 'UUID',
 				value: {
-					stringValue: event.userId
+					stringValue: event.user_id
 				}
 			}
 		],
 		resourceArn: process.env.DATABASE_CLUSTER_ARN,
 		secretArn: process.env.DATABASE_CREDENTIALS_SECRETS_STORE_ARN,
-		sql: 'SELECT * FROM public.cellars WHERE cellars.user_id = :userId'
+		sql: 'SELECT * FROM public.cellars WHERE cellars.user_id = :user_id'
 	};
 
 	const command = new ExecuteStatementCommand(sqlParams);
