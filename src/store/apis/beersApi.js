@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const beersApi = createApi({
 	baseQuery: fetchBaseQuery({
-		baseUrl: 'http://192.168.1.9:3005'
+		baseUrl: import.meta.env.VITE_JSON_SERVER_BASE_URL
 	}),
 	reducerPath: 'beers',
 	endpoints(builder) {
