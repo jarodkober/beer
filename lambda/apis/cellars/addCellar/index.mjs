@@ -32,7 +32,7 @@ export const handler = async (event) => {
 		],
 		resourceArn: process.env.DATABASE_CLUSTER_ARN,
 		secretArn: process.env.DATABASE_CREDENTIALS_SECRETS_STORE_ARN,
-		sql: 'INSERT INTO public.cellars (cellar_description, cellar_name, user_id) VALUES (:cellar_description, :cellar_nameZ, :user_id)'
+		sql: 'INSERT INTO public.cellars (cellar_description, cellar_name, user_id) VALUES (:cellar_description, :cellar_name, :user_id)'
 	};
 
 	const command = new ExecuteStatementCommand(sqlParams);
