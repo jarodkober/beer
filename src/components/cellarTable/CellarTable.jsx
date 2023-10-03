@@ -14,7 +14,10 @@ function CellarTable({ user }) {
 		user: PropTypes.object
 	};
 
-	const { data, error, isLoading } = useGetCellarsQuery(user.username);
+	const { data, error, isLoading } = useGetCellarsQuery({
+		user_auth: user.signInUserSession.idToken.jwtToken,
+		user_id: user.username
+	});
 
 	const toast = useRef(null);
 

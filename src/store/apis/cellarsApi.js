@@ -16,6 +16,9 @@ const cellarsApi = createApi({
 							cellar_name: cellar.cellar_name,
 							user_id: cellar.user_id
 						},
+						headers: {
+							Authorization: cellar.user_auth
+						},
 						method: 'POST',
 						url: '/cellars'
 					};
@@ -23,10 +26,13 @@ const cellarsApi = createApi({
 			}),
 			getCellars: builder.query({
 				providesTags: ['Cellars'],
-				query: (user_id) => {
+				query: (user) => {
 					return {
+						headers: {
+							Authorization: user.user_auth
+						},
 						method: 'GET',
-						url: `/cellars/${user_id}`
+						url: `/cellars/${user.user_id}`
 					};
 				}
 			})

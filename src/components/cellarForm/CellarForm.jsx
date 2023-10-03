@@ -34,6 +34,7 @@ function CellarForm({ onHide, user }) {
 	const onSubmit = (data) => {
 		data = {
 			...data,
+			user_auth: user.signInUserSession.idToken.jwtToken,
 			user_id: user.username
 		};
 
