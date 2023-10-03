@@ -23,9 +23,6 @@ export const handler = async (event) => {
 		sql: 'SELECT * FROM public.cellars WHERE cellars.user_id = :user_id'
 	};
 
-	const command = new ExecuteStatementCommand(sqlParams);
-	const response = await client.send(command);
-
 	const parseDataServiceResponse = (resp) => {
 		let columns = resp.columnMetadata.map((c) => c.name);
 		let data = resp.records.map((r) => {
@@ -38,5 +35,15 @@ export const handler = async (event) => {
 		return data;
 	};
 
-	return parseDataServiceResponse(response);
+	const command = new ExecuteStatementCommand(sqlParams);
+
+	try {
+		const response = await client.send(command);
+
+		return parseDataServiceResponse(response);
+	} catch (error) {
+		error.message = 'Error Code 500: ' + error.message;
+
+		throw error;
+	}
 };
