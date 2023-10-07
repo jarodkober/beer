@@ -32,7 +32,7 @@ const cellarsApi = createApi({
 							Authorization: user.user_auth
 						},
 						method: 'GET',
-						url: `/cellars/${user.user_id}`
+						url: `/user/${user.user_id}/cellars`
 					};
 				}
 			})
