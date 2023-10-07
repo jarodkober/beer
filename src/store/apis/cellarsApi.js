@@ -13,14 +13,13 @@ const cellarsApi = createApi({
 					return {
 						body: {
 							cellar_description: cellar.cellar_description,
-							cellar_name: cellar.cellar_name,
-							user_id: cellar.user_id
+							cellar_name: cellar.cellar_name
 						},
 						headers: {
 							Authorization: cellar.user_auth
 						},
 						method: 'POST',
-						url: '/cellars'
+						url: `/user/${cellar.user_id}/cellars`
 					};
 				}
 			}),
