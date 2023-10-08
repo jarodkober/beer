@@ -1,19 +1,17 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { Button } from 'primereact/button';
-import { Toast } from 'primereact/toast';
 import { PiTrash } from 'react-icons/pi';
 import PropTypes from 'prop-types';
 import { useDeleteCellarMutation } from '../../store';
 
-function CellarTableDeleteButton({ cellar_id, user }) {
+function CellarTableDeleteButton({ cellar_id, toast, user }) {
 	CellarTableDeleteButton.propTypes = {
 		cellar_id: PropTypes.number,
+		toast: PropTypes.object,
 		user: PropTypes.object
 	};
 
 	const [deleteCellar, results] = useDeleteCellarMutation();
-
-	const toast = useRef(null);
 
 	const handleDeleteCellar = () => {
 		deleteCellar({
@@ -31,18 +29,15 @@ function CellarTableDeleteButton({ cellar_id, user }) {
 				sticky: true,
 				summary: 'Error'
 			});
-	}, [results.error]);
+	}, [results.error, toast]);
 
 	return (
-		<>
-			<Toast ref={toast} />
-			<Button
-				aria-label="Delete cellar"
-				onClick={handleDeleteCellar}
-			>
-				<PiTrash />
-			</Button>
-		</>
+		<Button
+			aria-label="Delete cellar"
+			onClick={handleDeleteCellar}
+		>
+			<PiTrash />
+		</Button>
 	);
 }
 

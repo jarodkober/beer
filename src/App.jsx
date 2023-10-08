@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Amplify } from 'aws-amplify';
 import awsExports from './aws-exports';
@@ -11,6 +12,7 @@ import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
 import BeerPage from './pages/BeerPage';
 import CellarPage from './pages/CellarPage';
+import { Toast } from 'primereact/toast';
 
 Amplify.configure(awsExports);
 
@@ -19,6 +21,8 @@ function App() {
 		name: 'my-theme',
 		overrides: [defaultDarkModeOverride]
 	};
+
+	const toast = useRef(null);
 
 	return (
 		<ThemeProvider
@@ -33,18 +37,29 @@ function App() {
 							<main>
 								<Routes>
 									<Route
-										element={<BeerPage user={user} />}
+										element={
+											<BeerPage
+												toast={toast}
+												user={user}
+											/>
+										}
 										exact
 										path="/"
 									></Route>
 									<Route
-										element={<CellarPage user={user} />}
+										element={
+											<CellarPage
+												toast={toast}
+												user={user}
+											/>
+										}
 										exact
 										path="/cellars"
 									></Route>
 								</Routes>
 							</main>
 							<Footer />
+							<Toast ref={toast} />
 						</div>
 					</Router>
 				)}

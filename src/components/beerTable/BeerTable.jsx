@@ -1,23 +1,21 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { PropTypes } from 'prop-types';
 import styles from './BeerTable.module.scss';
 import { useGetBeersQuery } from '../../store';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import { Skeleton } from 'primereact/skeleton';
-import { Toast } from 'primereact/toast';
 import BeerForm from '../beerForm/BeerForm';
 import BeerTableDrinkButton from '../beerTableDrinkButton/BeerTableDrinkButton';
 import ModalTriggerButton from '../modalTriggerButton/ModalTriggerButton';
 
-function BeerTable({ user }) {
+function BeerTable({ toast, user }) {
 	BeerTable.propTypes = {
+		toast: PropTypes.object,
 		user: PropTypes.object
 	};
 
 	const { data, error, isLoading } = useGetBeersQuery();
-
-	const toast = useRef(null);
 
 	const skeletonContent = () => {
 		return <Skeleton height="1rem"></Skeleton>;
@@ -55,12 +53,10 @@ function BeerTable({ user }) {
 				detail: 'Error loading beers.',
 				sticky: true
 			});
-	}, [error]);
+	}, [error, toast]);
 
 	return (
 		<section className={styles.table}>
-			<Toast ref={toast} />
-
 			<DataTable
 				filterDisplay="row"
 				header={header}

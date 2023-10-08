@@ -1,17 +1,17 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import styles from './CellarTable.module.scss';
 import { PropTypes } from 'prop-types';
 import { useGetCellarsQuery } from '../../store';
 import { Skeleton } from 'primereact/skeleton';
-import { Toast } from 'primereact/toast';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import CellarForm from '../cellarForm/CellarForm';
 import ModalTriggerButton from '../modalTriggerButton/ModalTriggerButton';
 import CellarTableDeleteButton from '../cellarTableDeleteButton/CellarTableDeleteButton';
 
-function CellarTable({ user }) {
+function CellarTable({ toast, user }) {
 	CellarTable.propTypes = {
+		toast: PropTypes.object,
 		user: PropTypes.object
 	};
 
@@ -19,8 +19,6 @@ function CellarTable({ user }) {
 		user_auth: user.signInUserSession.idToken.jwtToken,
 		user_id: user.username
 	});
-
-	const toast = useRef(null);
 
 	const skeletonContent = () => {
 		return <Skeleton height="1rem"></Skeleton>;
@@ -33,7 +31,7 @@ function CellarTable({ user }) {
 			<h1>{user.attributes.name}&rsquo;s Cellars</h1>
 			<ModalTriggerButton
 				buttonLabel="Add Cellar"
-				modalBodyComponent={<CellarForm />}
+				modalBodyComponent={<CellarForm toast={toast} />}
 				modalHeader="Create a Cellar"
 				user={user}
 			/>
@@ -45,6 +43,7 @@ function CellarTable({ user }) {
 			<CellarTableDeleteButton
 				cellar_id={cellar.cellar_id}
 				key={cellar.cellar_id}
+				toast={toast}
 				user={user}
 			></CellarTableDeleteButton>
 		);
@@ -58,12 +57,10 @@ function CellarTable({ user }) {
 				sticky: true,
 				summary: 'Error'
 			});
-	}, [error]);
+	}, [error, toast]);
 
 	return (
 		<section className={styles.table}>
-			<Toast ref={toast} />
-
 			<DataTable
 				filterDisplay="row"
 				header={header}
