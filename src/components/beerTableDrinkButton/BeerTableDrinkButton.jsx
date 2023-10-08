@@ -1,4 +1,3 @@
-import styles from './BeerTableDrinkButton.module.scss';
 import { Button } from 'primereact/button';
 import { useDrinkBeerMutation } from '../../store';
 import PropTypes from 'prop-types';
@@ -20,7 +19,6 @@ function BeerTableDrinkButton({ disabled, id, quantity }) {
 	return (
 		<Button
 			aria-label="Drink a beer!"
-			className={styles.BeerTableDrinkButton}
 			disabled={disabled}
 			onClick={handleDrinkBeer}
 		>
