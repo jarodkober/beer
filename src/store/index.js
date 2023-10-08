@@ -19,8 +19,12 @@ setupListeners(store.dispatch);
 
 export {
 	useAddBeerMutation,
-	useGetBeersQuery,
-	useDrinkBeerMutation
+	useDrinkBeerMutation,
+	useGetBeersQuery
 } from './apis/beersApi';
 
-export { useGetCellarsQuery, useAddCellarMutation } from './apis/cellarsApi';
+export {
+	useAddCellarMutation,
+	useDeleteCellarMutation,
+	useGetCellarsQuery
+} from './apis/cellarsApi';

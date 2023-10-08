@@ -8,6 +8,7 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import CellarForm from '../cellarForm/CellarForm';
 import ModalTriggerButton from '../modalTriggerButton/ModalTriggerButton';
+import CellarTableDeleteButton from '../cellarTableDeleteButton/CellarTableDeleteButton';
 
 function CellarTable({ user }) {
 	CellarTable.propTypes = {
@@ -25,6 +26,8 @@ function CellarTable({ user }) {
 		return <Skeleton height="1rem"></Skeleton>;
 	};
 
+	const skeletonRows = Array.from({ length: 5 }, (v, i) => i);
+
 	const header = (
 		<div className={styles['table-header']}>
 			<h1>{user.attributes.name}&rsquo;s Cellars</h1>
@@ -37,7 +40,15 @@ function CellarTable({ user }) {
 		</div>
 	);
 
-	const skeletonRows = Array.from({ length: 5 }, (v, i) => i);
+	const actionsTemplate = (cellar) => {
+		return (
+			<CellarTableDeleteButton
+				cellar_id={cellar.cellar_id}
+				key={cellar.cellar_id}
+				user={user}
+			></CellarTableDeleteButton>
+		);
+	};
 
 	useEffect(() => {
 		error &&
@@ -77,6 +88,10 @@ function CellarTable({ user }) {
 					filterMatchMode="contains"
 					filterPlaceholder="Filter by Description"
 					header="Description"
+				></Column>
+				<Column
+					body={actionsTemplate}
+					field="action_buttons"
 				></Column>
 			</DataTable>
 		</section>

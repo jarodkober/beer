@@ -7,9 +7,9 @@
 	padding: 0;
 }
 
+/// GLOBAL STYLES
 body {
 	font-family: var(--font-family);
-	margin: 0;
 
 	.container {
 		display: grid;
@@ -41,6 +41,12 @@ body {
 			grid-area: footer;
 		}
 	}
+}
+
+/// PRIME REACT OVERRIDES
+.p-button:has(svg) {
+	font-size: 1.5rem;
+	padding: 0.25rem;
 }
 
 /// UTILITIES
