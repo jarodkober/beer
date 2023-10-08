@@ -1,11 +1,11 @@
-import styles from './DrinkBeer.module.scss';
+import styles from './BeerTableDrinkButton.module.scss';
 import { Button } from 'primereact/button';
 import { useDrinkBeerMutation } from '../../store';
 import PropTypes from 'prop-types';
 import { PiBeerBottle } from 'react-icons/pi';
 
-function DrinkBeer({ disabled, id, quantity }) {
-	DrinkBeer.propTypes = {
+function BeerTableDrinkButton({ disabled, id, quantity }) {
+	BeerTableDrinkButton.propTypes = {
 		disabled: PropTypes.bool,
 		id: PropTypes.number,
 		quantity: PropTypes.number
@@ -20,7 +20,7 @@ function DrinkBeer({ disabled, id, quantity }) {
 	return (
 		<Button
 			aria-label="Drink a beer!"
-			className={styles.drinkBeer}
+			className={styles.BeerTableDrinkButton}
 			disabled={disabled}
 			onClick={handleDrinkBeer}
 		>
@@ -29,4 +29,4 @@ function DrinkBeer({ disabled, id, quantity }) {
 	);
 }
 
-export default DrinkBeer;
+export default BeerTableDrinkButton;

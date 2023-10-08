@@ -7,7 +7,7 @@ import { DataTable } from 'primereact/datatable';
 import { Skeleton } from 'primereact/skeleton';
 import { Toast } from 'primereact/toast';
 import BeerForm from '../beerForm/BeerForm';
-import DrinkBeer from '../drinkBeer/DrinkBeer';
+import BeerTableDrinkButton from '../beerTableDrinkButton/BeerTableDrinkButton';
 import ModalTriggerButton from '../modalTriggerButton/ModalTriggerButton';
 
 function BeerTable({ user }) {
@@ -25,12 +25,12 @@ function BeerTable({ user }) {
 
 	const editTemplate = (beer) => {
 		return (
-			<DrinkBeer
+			<BeerTableDrinkButton
 				disabled={beer.beer_quantity < 1}
 				id={beer.id}
 				key={beer.id}
 				quantity={beer.beer_quantity}
-			></DrinkBeer>
+			></BeerTableDrinkButton>
 		);
 	};
 
