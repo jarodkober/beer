@@ -8,7 +8,6 @@ const client = new RDSDataClient();
 export const handler = async (event) => {
 	const sqlParams = {
 		database: process.env.DATABASE_NAME,
-		includeResultMetadata: true,
 		parameters: [
 			{
 				name: 'cellar_description',
