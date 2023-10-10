@@ -597,7 +597,7 @@
     {
       "beer_abv": 14.2,
       "beer_name": "Dark Side of the Otter",
-      "beer_quantity": 1,
+      "beer_quantity": 0,
       "beer_size": 355,
       "beer_style": "Barleywine - Other",
       "beer_vintage": 2022,
@@ -663,7 +663,7 @@
     {
       "beer_abv": 12.8,
       "beer_name": "Mallow Dose",
-      "beer_quantity": 1,
+      "beer_quantity": 0,
       "beer_size": 650,
       "beer_style": "Stout - Imperial / Double",
       "beer_vintage": 2023,
