@@ -35,6 +35,7 @@ function CellarTableDeleteButton({ cellar_id, toast, user }) {
 		<Button
 			aria-label="Delete cellar"
 			onClick={handleDeleteCellar}
+			text
 		>
 			<PiTrash />
 		</Button>

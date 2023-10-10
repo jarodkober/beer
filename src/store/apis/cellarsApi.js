@@ -46,6 +46,22 @@ const cellarsApi = createApi({
 						url: `/user/${user.user_id}/cellars`
 					};
 				}
+			}),
+			updateCellar: builder.mutation({
+				invalidatesTags: ['Cellars'],
+				query: (cellar) => {
+					return {
+						body: {
+							cellar_description: cellar.cellar_description,
+							cellar_name: cellar.cellar_name
+						},
+						headers: {
+							Authorization: cellar.user_auth
+						},
+						method: 'PUT',
+						url: `/user/${cellar.user_id}/cellars/${cellar.cellar_id}`
+					};
+				}
 			})
 		};
 	}
@@ -54,7 +70,8 @@ const cellarsApi = createApi({
 export const {
 	useAddCellarMutation,
 	useDeleteCellarMutation,
-	useGetCellarsQuery
+	useGetCellarsQuery,
+	useUpdateCellarMutation
 } = cellarsApi;
 
 export { cellarsApi };

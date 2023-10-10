@@ -26,5 +26,6 @@ export {
 export {
 	useAddCellarMutation,
 	useDeleteCellarMutation,
-	useGetCellarsQuery
+	useGetCellarsQuery,
+	useUpdateCellarMutation
 } from './apis/cellarsApi';

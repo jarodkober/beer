@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import styles from './CellarTable.module.scss';
 import { PropTypes } from 'prop-types';
-import { useGetCellarsQuery } from '../../store';
+import { useGetCellarsQuery, useUpdateCellarMutation } from '../../store';
+import { InputText } from 'primereact/inputtext';
 import { Skeleton } from 'primereact/skeleton';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -19,6 +20,8 @@ function CellarTable({ toast, user }) {
 		user_auth: user.signInUserSession.idToken.jwtToken,
 		user_id: user.username
 	});
+
+	const [updateCellar, results] = useUpdateCellarMutation();
 
 	const skeletonContent = () => {
 		return <Skeleton height="1rem"></Skeleton>;
@@ -38,7 +41,7 @@ function CellarTable({ toast, user }) {
 		</div>
 	);
 
-	const actionsTemplate = (cellar) => {
+	const deleteTemplate = (cellar) => {
 		return (
 			<CellarTableDeleteButton
 				cellar_id={cellar.cellar_id}
@@ -47,6 +50,27 @@ function CellarTable({ toast, user }) {
 				user={user}
 			></CellarTableDeleteButton>
 		);
+	};
+
+	const textEditor = (options) => {
+		return (
+			<InputText
+				onChange={(e) => options.editorCallback(e.target.value)}
+				required="true"
+				type="text"
+				value={options.value}
+			/>
+		);
+	};
+
+	const onRowEditComplete = (e) => {
+		updateCellar({
+			cellar_description: e.newData.cellar_description,
+			cellar_id: e.data.cellar_id,
+			cellar_name: e.newData.cellar_name,
+			user_auth: user.signInUserSession.idToken.jwtToken,
+			user_id: user.username
+		});
 	};
 
 	useEffect(() => {
@@ -59,11 +83,23 @@ function CellarTable({ toast, user }) {
 			});
 	}, [error, toast]);
 
+	useEffect(() => {
+		results.error &&
+			toast.current.show({
+				detail: 'An error occurred while updating your cellar. Please try again.',
+				severity: 'error',
+				sticky: true,
+				summary: 'Error'
+			});
+	}, [results.error, toast]);
+
 	return (
 		<section className={styles.table}>
 			<DataTable
+				editMode="row"
 				filterDisplay="row"
 				header={header}
+				onRowEditComplete={onRowEditComplete}
 				scrollable
 				scrollHeight="flex"
 				stripedRows
@@ -71,6 +107,7 @@ function CellarTable({ toast, user }) {
 			>
 				<Column
 					body={isLoading && skeletonContent}
+					editor={(options) => textEditor(options)}
 					field="cellar_name"
 					filter
 					filterMatchMode="contains"
@@ -80,6 +117,7 @@ function CellarTable({ toast, user }) {
 				></Column>
 				<Column
 					body={isLoading && skeletonContent}
+					editor={(options) => textEditor(options)}
 					field="cellar_description"
 					filter
 					filterMatchMode="contains"
@@ -87,7 +125,14 @@ function CellarTable({ toast, user }) {
 					header="Description"
 				></Column>
 				<Column
-					body={actionsTemplate}
+					bodyStyle={{ textAlign: 'center' }}
+					headerStyle={{ width: '2%' }}
+					rowEditor
+				></Column>
+				<Column
+					body={deleteTemplate}
+					bodyStyle={{ textAlign: 'center' }}
+					headerStyle={{ width: '2%' }}
 					field="action_buttons"
 				></Column>
 			</DataTable>
