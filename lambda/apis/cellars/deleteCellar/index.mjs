@@ -30,15 +30,9 @@ export const handler = async (event) => {
 
 	const command = new ExecuteStatementCommand(sqlParams);
 
-	try {
-		const response = await client.send(command);
+	const response = await client.send(command);
 
-		if (response.numberOfRecordsUpdated === 0) {
-			throw new Error('Cellar was not deleted because it does not exist');
-		}
-	} catch (error) {
-		error.message = 'Error Code 500: ' + error.message;
-
-		throw error;
+	if (response.numberOfRecordsUpdated === 0) {
+		throw new Error('Cellar was not deleted because it does not exist');
 	}
 };

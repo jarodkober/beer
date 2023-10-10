@@ -36,11 +36,5 @@ export const handler = async (event) => {
 
 	const command = new ExecuteStatementCommand(sqlParams);
 
-	try {
-		const response = await client.send(command);
-	} catch (error) {
-		error.message = 'Error Code 500: ' + error.message;
-
-		throw error;
-	}
+	const response = await client.send(command);
 };
