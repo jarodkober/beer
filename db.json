@@ -212,7 +212,7 @@
     {
       "beer_abv": 12.3,
       "beer_name": "Double DBA: Batch 10,000",
-      "beer_quantity": 1,
+      "beer_quantity": 0,
       "beer_size": 355,
       "beer_style": "Bitter - Extra Special / Strong (ESB)",
       "beer_vintage": 2023,
