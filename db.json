@@ -531,7 +531,7 @@
     {
       "beer_abv": 13.9,
       "beer_name": "Brave Faces",
-      "beer_quantity": 1,
+      "beer_quantity": 0,
       "beer_size": 650,
       "beer_style": "Stout - Imperial / Double Pastry",
       "beer_vintage": 2022,
