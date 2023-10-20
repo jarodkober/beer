@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { PropTypes } from 'prop-types';
 import styles from './BeerTable.module.scss';
-import { useGetBeersQuery } from '../../store';
+import { useGetBeersByUserQuery } from '../../store';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import { Skeleton } from 'primereact/skeleton';
@@ -15,7 +15,10 @@ function BeerTable({ toast, user }) {
 		user: PropTypes.object
 	};
 
-	const { data, error, isLoading } = useGetBeersQuery();
+	const { data, error, isLoading } = useGetBeersByUserQuery({
+		user_auth: user.signInUserSession.idToken.jwtToken,
+		user_id: user.username
+	});
 
 	const skeletonContent = () => {
 		return <Skeleton height="1rem"></Skeleton>;

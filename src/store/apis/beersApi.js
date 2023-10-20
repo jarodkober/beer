@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const beersApi = createApi({
 	baseQuery: fetchBaseQuery({
-		baseUrl: import.meta.env.VITE_JSON_SERVER_BASE_URL
+		baseUrl: import.meta.env.VITE_API_BASE_URL
 	}),
 	reducerPath: 'beers',
 	endpoints(builder) {
@@ -47,11 +47,27 @@ const beersApi = createApi({
 						url: '/beers'
 					};
 				}
+			}),
+			getBeersByUser: builder.query({
+				providesTags: ['Beers'],
+				query: (user) => {
+					return {
+						headers: {
+							Authorization: user.user_auth
+						},
+						method: 'GET',
+						url: `/user/${user.user_id}/beers`
+					};
+				}
 			})
 		};
 	}
 });
 
-export const { useAddBeerMutation, useGetBeersQuery, useDrinkBeerMutation } =
-	beersApi;
+export const {
+	useAddBeerMutation,
+	useDrinkBeerMutation,
+	useGetBeersQuery,
+	useGetBeersByUserQuery
+} = beersApi;
 export { beersApi };
