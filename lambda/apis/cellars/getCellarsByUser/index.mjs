@@ -20,7 +20,7 @@ export const handler = async (event) => {
 		],
 		resourceArn: process.env.DATABASE_CLUSTER_ARN,
 		secretArn: process.env.DATABASE_CREDENTIALS_SECRETS_STORE_ARN,
-		sql: 'SELECT * FROM public.cellars WHERE cellars.user_id = :user_id'
+		sql: 'SELECT cellar_id, cellar_description, cellar_name FROM public.cellars WHERE cellars.user_id = :user_id'
 	};
 
 	const parseDataServiceResponse = (resp) => {
