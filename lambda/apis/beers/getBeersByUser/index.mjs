@@ -27,11 +27,13 @@ export const handler = async (event) => {
 				beer_cellars.beer_size,
 				beers.beer_name, beers.beer_abv,
 				beers.beer_vintage,
+				breweries.brewery_name,
 				cellars.cellar_description,
 				cellars.cellar_name
 			FROM public.beer_cellars
 			INNER JOIN public.beers on beer_cellars.beer_id = beers.beer_id
 			INNER JOIN public.cellars on beer_cellars.cellar_id = cellars.cellar_id
+			INNER JOIN public.breweries on beers.brewery_id = breweries.brewery_id
 			WHERE beer_cellars.user_id = :user_id`
 	};
 
