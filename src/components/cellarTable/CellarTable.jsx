@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import styles from './CellarTable.module.scss';
 import { PropTypes } from 'prop-types';
-import { useGetCellarsQuery, useUpdateCellarMutation } from '../../store';
+import { useGetCellarsByUserQuery, useUpdateCellarMutation } from '../../store';
 import { InputText } from 'primereact/inputtext';
 import { Skeleton } from 'primereact/skeleton';
 import { DataTable } from 'primereact/datatable';
@@ -16,7 +16,7 @@ function CellarTable({ toast, user }) {
 		user: PropTypes.object
 	};
 
-	const { data, error, isLoading } = useGetCellarsQuery({
+	const { data, error, isLoading } = useGetCellarsByUserQuery({
 		user_auth: user.signInUserSession.idToken.jwtToken,
 		user_id: user.username
 	});

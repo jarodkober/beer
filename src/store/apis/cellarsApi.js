@@ -35,7 +35,7 @@ const cellarsApi = createApi({
 					};
 				}
 			}),
-			getCellars: builder.query({
+			getCellarsByUser: builder.query({
 				providesTags: ['Cellars'],
 				query: (user) => {
 					return {
@@ -70,7 +70,7 @@ const cellarsApi = createApi({
 export const {
 	useAddCellarMutation,
 	useDeleteCellarMutation,
-	useGetCellarsQuery,
+	useGetCellarsByUserQuery,
 	useUpdateCellarMutation
 } = cellarsApi;
 
