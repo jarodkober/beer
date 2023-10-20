@@ -520,7 +520,7 @@
     {
       "beer_abv": 12.4,
       "beer_name": "Bizarre Boots",
-      "beer_quantity": 1,
+      "beer_quantity": 0,
       "beer_size": 650,
       "beer_style": "Stout - Imperial / Double Pastry",
       "beer_vintage": 2023,
@@ -696,7 +696,7 @@
     {
       "beer_abv": 13.9,
       "beer_name": "Straight From the Hills",
-      "beer_quantity": 1,
+      "beer_quantity": 0,
       "beer_size": 355,
       "beer_style": "Stout - Imperial / Double",
       "beer_vintage": 2023,
