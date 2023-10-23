@@ -19,7 +19,7 @@ const beersApi = createApi({
 							beer_style: beer.beer_style,
 							beer_vintage: beer.beer_vintage,
 							brewery_name: beer.brewery_name,
-							cellar_name: beer.cellar_name
+							cellar_id: beer.cellar_id
 						},
 						method: 'POST',
 						url: '/beers'

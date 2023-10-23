@@ -1,10 +1,9 @@
 .beerForm {
-	display: grid;
-	grid-gap: 2rem 3rem;
-	grid-template-columns: 1fr 1fr;
-	padding-block: 1rem;
-
-	input {
-		width: 100%;
+	> div,
+	form {
+		display: grid;
+		grid-gap: 2rem 3rem;
+		grid-template-columns: 1fr 1fr;
+		padding-block: 1rem;
 	}
 }

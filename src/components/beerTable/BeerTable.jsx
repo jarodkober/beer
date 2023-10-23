@@ -40,8 +40,9 @@ function BeerTable({ toast, user }) {
 			<h1>{user.attributes.name}&rsquo;s Beers</h1>
 			<ModalTriggerButton
 				buttonLabel="Add Beer"
-				modalBodyComponent={<BeerForm />}
+				modalBodyComponent={<BeerForm toast={toast} />}
 				modalHeader="Add a Beer"
+				user={user}
 			/>
 		</div>
 	);
