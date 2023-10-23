@@ -5,7 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite --host",
-		"dev:server": "json-server --host 192.168.1.14 --watch db.json --port 3005",
+		"dev:server": "json-server --host 192.168.1.30 --watch db.json --port 3005",
 		"build": "vite build",
 		"lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
 		"preview": "vite preview"
