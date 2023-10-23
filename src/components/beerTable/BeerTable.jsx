@@ -129,6 +129,12 @@ function BeerTable({ toast, user }) {
 				></Column>
 				<Column
 					body={isLoading && skeletonContent}
+					field="beer_cost"
+					header="Cost"
+					sortable
+				></Column>
+				<Column
+					body={isLoading && skeletonContent}
 					field="beer_quantity"
 					header="Qty"
 					sortable

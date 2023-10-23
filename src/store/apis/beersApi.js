@@ -13,6 +13,7 @@ const beersApi = createApi({
 					return {
 						body: {
 							beer_abv: beer.beer_abv,
+							beer_cost: beer.beer_cost,
 							beer_name: beer.beer_name,
 							beer_quantity: beer.beer_quantity,
 							beer_size: beer.beer_size,

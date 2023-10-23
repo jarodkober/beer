@@ -620,6 +620,45 @@ function BeerForm({ onHide, toast, user }) {
 					<div className="field">
 						<span className="p-float-label">
 							<Controller
+								name="beer_cost"
+								control={control}
+								render={({ field, fieldState }) => (
+									<>
+										<InputNumber
+											id={field.name}
+											inputClassName={classNames({
+												'p-invalid': fieldState.invalid
+											})}
+											maxFractionDigits={2}
+											minFractionDigits={2}
+											onBlur={field.onBlur}
+											onValueChange={(e) =>
+												field.onChange(e)
+											}
+											prefix="$"
+											ref={field.ref}
+											useGrouping={false}
+											value={field.value}
+										/>
+									</>
+								)}
+							/>
+							<label
+								className={classNames({
+									'p-error': errors.name
+								})}
+								htmlFor="beer_cost"
+							>
+								Cost
+							</label>
+						</span>
+
+						{getFormErrorMessage('beer_cost')}
+					</div>
+
+					<div className="field">
+						<span className="p-float-label">
+							<Controller
 								name="beer_quantity"
 								control={control}
 								rules={{
