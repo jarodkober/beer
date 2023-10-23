@@ -396,7 +396,7 @@ function BeerForm({ onHide, toast, user }) {
 										(value >= 1900 &&
 											value <=
 												new Date().getFullYear() + 1) ||
-										'Enter a valid year.'
+										'A vintage year is required.'
 								}}
 								render={({ field, fieldState }) => (
 									<>
@@ -436,7 +436,7 @@ function BeerForm({ onHide, toast, user }) {
 								name="brewery_name"
 								control={control}
 								rules={{
-									required: 'A brewery name is required.'
+									required: 'A brewery is required.'
 								}}
 								render={({ field, fieldState }) => (
 									<>
@@ -471,8 +471,11 @@ function BeerForm({ onHide, toast, user }) {
 								rules={{
 									required: 'A beer style is required.'
 								}}
-								render={({ field }) => (
+								render={({ field, fieldState }) => (
 									<Dropdown
+										className={classNames({
+											'p-invalid': fieldState.error
+										})}
 										filter
 										id={field.name}
 										onChange={(e) =>
@@ -502,8 +505,7 @@ function BeerForm({ onHide, toast, user }) {
 								name="cellar_id"
 								control={control}
 								rules={{
-									required:
-										'A beer cellar location is required.'
+									required: 'A beer cellar is required.'
 								}}
 								render={({ field, fieldState }) => (
 									<Dropdown
@@ -620,9 +622,14 @@ function BeerForm({ onHide, toast, user }) {
 							<Controller
 								name="beer_quantity"
 								control={control}
-								rules={{}}
-								render={({ field }) => (
+								rules={{
+									required: 'A quantity is required.'
+								}}
+								render={({ field, fieldState }) => (
 									<Dropdown
+										className={classNames({
+											'p-invalid': fieldState.error
+										})}
 										id={field.name}
 										onChange={(e) =>
 											field.onChange(e.value)
