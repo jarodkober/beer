@@ -308,6 +308,13 @@ function BeerForm({ onHide, toast, user }) {
 		'Winter Warmer'
 	];
 
+	const skeleton = [...Array(10)].map((e, i) => (
+		<Skeleton
+			height="3rem"
+			key={i}
+		/>
+	));
+
 	useEffect(() => {
 		if (results.isSuccess) {
 			onHide();
@@ -327,18 +334,7 @@ function BeerForm({ onHide, toast, user }) {
 	return (
 		<div className={styles.beerForm}>
 			{isLoading ? (
-				<div>
-					<Skeleton height="3rem" />
-					<Skeleton height="3rem" />
-					<Skeleton height="3rem" />
-					<Skeleton height="3rem" />
-					<Skeleton height="3rem" />
-					<Skeleton height="3rem" />
-					<Skeleton height="3rem" />
-					<Skeleton height="3rem" />
-					<Skeleton height="3rem" />
-					<Skeleton height="3rem" />
-				</div>
+				<div>{skeleton}</div>
 			) : (
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<div className="field">
