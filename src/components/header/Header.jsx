@@ -59,6 +59,17 @@ function Header({ signOut }) {
 								showMobileNavMenu &&
 									setShowMobileNavMenu(false);
 							}}
+							to="/breweries"
+						>
+							Breweries
+						</NavLink>
+					</li>
+					<li>
+						<NavLink
+							onClick={() => {
+								showMobileNavMenu &&
+									setShowMobileNavMenu(false);
+							}}
 							to="/cellars"
 						>
 							Cellars

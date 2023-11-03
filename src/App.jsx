@@ -11,6 +11,7 @@ import '@aws-amplify/ui-react/styles.css';
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
 import BeerPage from './pages/BeerPage';
+import BreweryPage from './pages/BreweryPage';
 import CellarPage from './pages/CellarPage';
 import { Toast } from 'primereact/toast';
 
@@ -45,6 +46,16 @@ function App() {
 										}
 										exact
 										path="/"
+									></Route>
+									<Route
+										element={
+											<BreweryPage
+												toast={toast}
+												user={user}
+											/>
+										}
+										exact
+										path="/breweries"
 									></Route>
 									<Route
 										element={
