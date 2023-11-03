@@ -33,6 +33,7 @@ body {
 			overflow: auto;
 
 			& section {
+				overflow: hidden;
 				padding-block: 15px;
 			}
 		}
@@ -47,6 +48,13 @@ body {
 .p-button:has(svg) {
 	font-size: 1.5rem;
 	padding: 0.25rem;
+}
+
+.p-datatable-header > div {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .p-inputtext,

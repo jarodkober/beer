@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import styles from './CellarTable.module.scss';
 import { PropTypes } from 'prop-types';
 import { useGetCellarsByUserQuery, useUpdateCellarMutation } from '../../store';
 import { InputText } from 'primereact/inputtext';
@@ -30,7 +29,7 @@ function CellarTable({ toast, user }) {
 	const skeletonRows = Array.from({ length: 5 }, (v, i) => i);
 
 	const header = (
-		<div className={styles['table-header']}>
+		<div>
 			<h1>{user.attributes.name}&rsquo;s Cellars</h1>
 			<ModalTriggerButton
 				buttonLabel="Add Cellar"
@@ -94,7 +93,7 @@ function CellarTable({ toast, user }) {
 	}, [results.error, toast]);
 
 	return (
-		<section className={styles.table}>
+		<section>
 			<DataTable
 				editMode="row"
 				filterDisplay="row"
@@ -114,7 +113,7 @@ function CellarTable({ toast, user }) {
 					filterPlaceholder="Filter by Name"
 					header="Name"
 					sortable
-				></Column>
+				/>
 				<Column
 					body={isLoading && skeletonContent}
 					editor={(options) => textEditor(options)}
@@ -123,7 +122,7 @@ function CellarTable({ toast, user }) {
 					filterMatchMode="contains"
 					filterPlaceholder="Filter by Description"
 					header="Description"
-				></Column>
+				/>
 				<Column
 					bodyStyle={{ textAlign: 'center' }}
 					headerStyle={{ width: '2%' }}
@@ -134,7 +133,7 @@ function CellarTable({ toast, user }) {
 					bodyStyle={{ textAlign: 'center' }}
 					headerStyle={{ width: '2%' }}
 					field="action_buttons"
-				></Column>
+				/>
 			</DataTable>
 		</section>
 	);

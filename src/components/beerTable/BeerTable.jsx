@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { PropTypes } from 'prop-types';
-import styles from './BeerTable.module.scss';
 import { useGetBeersByUserQuery } from '../../store';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
@@ -36,7 +35,7 @@ function BeerTable({ toast, user }) {
 	};
 
 	const header = (
-		<div className={styles['table-header']}>
+		<div>
 			<h1>{user.attributes.name}&rsquo;s Beers</h1>
 			<ModalTriggerButton
 				buttonLabel="Add Beer"
@@ -60,7 +59,7 @@ function BeerTable({ toast, user }) {
 	}, [error, toast]);
 
 	return (
-		<section className={styles.table}>
+		<section>
 			<DataTable
 				filterDisplay="row"
 				header={header}
@@ -79,7 +78,7 @@ function BeerTable({ toast, user }) {
 					filterPlaceholder="Filter by Beer"
 					header="Name"
 					sortable
-				></Column>
+				/>
 				<Column
 					body={isLoading && skeletonContent}
 					field="beer_vintage"
@@ -87,7 +86,7 @@ function BeerTable({ toast, user }) {
 					filterPlaceholder="Filter by Vintage"
 					header="Vintage"
 					sortable
-				></Column>
+				/>
 				<Column
 					body={isLoading && skeletonContent}
 					field="brewery_name"
@@ -96,7 +95,7 @@ function BeerTable({ toast, user }) {
 					filterPlaceholder="Filter by Brewery"
 					header="Brewery"
 					sortable
-				></Column>
+				/>
 				<Column
 					body={isLoading && skeletonContent}
 					field="beer_style"
@@ -105,7 +104,7 @@ function BeerTable({ toast, user }) {
 					filterPlaceholder="Filter by Style"
 					header="Style"
 					sortable
-				></Column>
+				/>
 				<Column
 					body={isLoading && skeletonContent}
 					field="cellar_name"
@@ -114,36 +113,36 @@ function BeerTable({ toast, user }) {
 					filterPlaceholder="Filter by Cellar"
 					header="Cellar"
 					sortable
-				></Column>
+				/>
 				<Column
 					body={isLoading && skeletonContent}
 					field="beer_abv"
 					header="ABV"
 					sortable
-				></Column>
+				/>
 				<Column
 					body={isLoading && skeletonContent}
 					field="beer_size"
 					header="Size (ml)"
 					sortable
-				></Column>
+				/>
 				<Column
 					body={isLoading && skeletonContent}
 					field="beer_cost"
 					header="Cost"
 					sortable
-				></Column>
+				/>
 				<Column
 					body={isLoading && skeletonContent}
 					field="beer_quantity"
 					header="Qty"
 					sortable
-				></Column>
+				/>
 				<Column
 					body={editTemplate}
 					field="edit_buttons"
 					header="Cheers!"
-				></Column>
+				/>
 			</DataTable>
 		</section>
 	);
