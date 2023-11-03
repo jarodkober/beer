@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import styles from './BeerForm.module.scss';
 import {
 	useAddBeerMutation,
+	useGetBreweriesQuery,
 	useGetCellarsByUserQuery,
 	useGetStylesQuery
 } from '../../store';
@@ -28,7 +29,7 @@ function BeerForm({ onHide, toast, user }) {
 		beer_size: '',
 		beer_style: '',
 		beer_vintage: '',
-		brewery_name: '',
+		brewery_id: '',
 		cellar_id: ''
 	};
 
@@ -38,6 +39,14 @@ function BeerForm({ onHide, toast, user }) {
 		handleSubmit,
 		reset
 	} = useForm({ defaultValues });
+
+	const {
+		data: breweriesData,
+		error: breweriesError,
+		isLoading: breweriesIsLoading
+	} = useGetBreweriesQuery({
+		user_auth: user.signInUserSession.idToken.jwtToken
+	});
 
 	const {
 		data: cellarsData,
@@ -90,6 +99,16 @@ function BeerForm({ onHide, toast, user }) {
 	}, [onHide, results]);
 
 	useEffect(() => {
+		breweriesError &&
+			toast.current.show({
+				detail: 'An error occurred while loading the breweries. Please try again.',
+				severity: 'error',
+				sticky: true,
+				summary: 'Error'
+			});
+	});
+
+	useEffect(() => {
 		cellarsError &&
 			toast.current.show({
 				detail: 'An error occurred while loading your cellars. Please try again.',
@@ -111,7 +130,7 @@ function BeerForm({ onHide, toast, user }) {
 
 	return (
 		<div className={styles.beerForm}>
-			{cellarsIsLoading || stylesIsLoading ? (
+			{breweriesIsLoading || cellarsIsLoading || stylesIsLoading ? (
 				<div>{skeleton}</div>
 			) : (
 				<form onSubmit={handleSubmit(onSubmit)}>
@@ -124,16 +143,14 @@ function BeerForm({ onHide, toast, user }) {
 									required: 'A beer name is required.'
 								}}
 								render={({ field, fieldState }) => (
-									<>
-										<InputText
-											autoFocus
-											className={classNames({
-												'p-invalid': fieldState.invalid
-											})}
-											id={field.name}
-											{...field}
-										/>
-									</>
+									<InputText
+										autoFocus
+										className={classNames({
+											'p-invalid': fieldState.invalid
+										})}
+										id={field.name}
+										{...field}
+									/>
 								)}
 							/>
 							<label
@@ -162,22 +179,18 @@ function BeerForm({ onHide, toast, user }) {
 										'A vintage year is required.'
 								}}
 								render={({ field, fieldState }) => (
-									<>
-										<InputNumber
-											id={field.name}
-											inputClassName={classNames({
-												'p-invalid': fieldState.invalid
-											})}
-											maxLength={4}
-											onBlur={field.onBlur}
-											onValueChange={(e) =>
-												field.onChange(e)
-											}
-											ref={field.ref}
-											useGrouping={false}
-											value={field.value}
-										/>
-									</>
+									<InputNumber
+										id={field.name}
+										inputClassName={classNames({
+											'p-invalid': fieldState.invalid
+										})}
+										maxLength={4}
+										onBlur={field.onBlur}
+										onValueChange={(e) => field.onChange(e)}
+										ref={field.ref}
+										useGrouping={false}
+										value={field.value}
+									/>
 								)}
 							/>
 							<label
@@ -196,34 +209,38 @@ function BeerForm({ onHide, toast, user }) {
 					<div className="field">
 						<span className="p-float-label">
 							<Controller
-								name="brewery_name"
+								name="brewery_id"
 								control={control}
 								rules={{
 									required: 'A brewery is required.'
 								}}
 								render={({ field, fieldState }) => (
-									<>
-										<InputText
-											className={classNames({
-												'p-invalid': fieldState.invalid
-											})}
-											id={field.name}
-											{...field}
-										/>
-									</>
+									<Dropdown
+										className={classNames({
+											'p-invalid': fieldState.error
+										})}
+										id={field.name}
+										onChange={(e) =>
+											field.onChange(e.value)
+										}
+										optionLabel="brewery_name"
+										optionValue="brewery_id"
+										options={breweriesData}
+										value={field.value}
+									/>
 								)}
 							/>
 							<label
 								className={classNames({
 									'p-error': errors.name
 								})}
-								htmlFor="brewery_name"
+								htmlFor="brewery_id"
 							>
 								Brewery
 							</label>
 						</span>
 
-						{getFormErrorMessage('brewery_name')}
+						{getFormErrorMessage('brewery_id')}
 					</div>
 
 					<div className="field">
@@ -312,24 +329,20 @@ function BeerForm({ onHide, toast, user }) {
 										'Enter a valid percentage.'
 								}}
 								render={({ field, fieldState }) => (
-									<>
-										<InputNumber
-											id={field.name}
-											inputClassName={classNames({
-												'p-invalid': fieldState.invalid
-											})}
-											maxFractionDigits={1}
-											minFractionDigits={1}
-											onBlur={field.onBlur}
-											onValueChange={(e) =>
-												field.onChange(e)
-											}
-											ref={field.ref}
-											suffix="%"
-											useGrouping={false}
-											value={field.value}
-										/>
-									</>
+									<InputNumber
+										id={field.name}
+										inputClassName={classNames({
+											'p-invalid': fieldState.invalid
+										})}
+										maxFractionDigits={1}
+										minFractionDigits={1}
+										onBlur={field.onBlur}
+										onValueChange={(e) => field.onChange(e)}
+										ref={field.ref}
+										suffix="%"
+										useGrouping={false}
+										value={field.value}
+									/>
 								)}
 							/>
 							<label
@@ -352,21 +365,17 @@ function BeerForm({ onHide, toast, user }) {
 								control={control}
 								rules={{}}
 								render={({ field, fieldState }) => (
-									<>
-										<InputNumber
-											id={field.name}
-											inputClassName={classNames({
-												'p-invalid': fieldState.invalid
-											})}
-											onBlur={field.onBlur}
-											onValueChange={(e) =>
-												field.onChange(e)
-											}
-											ref={field.ref}
-											suffix=" ml"
-											value={field.value}
-										/>
-									</>
+									<InputNumber
+										id={field.name}
+										inputClassName={classNames({
+											'p-invalid': fieldState.invalid
+										})}
+										onBlur={field.onBlur}
+										onValueChange={(e) => field.onChange(e)}
+										ref={field.ref}
+										suffix=" ml"
+										value={field.value}
+									/>
 								)}
 							/>
 							<label
@@ -388,24 +397,20 @@ function BeerForm({ onHide, toast, user }) {
 								name="beer_cost"
 								control={control}
 								render={({ field, fieldState }) => (
-									<>
-										<InputNumber
-											id={field.name}
-											inputClassName={classNames({
-												'p-invalid': fieldState.invalid
-											})}
-											maxFractionDigits={2}
-											minFractionDigits={2}
-											onBlur={field.onBlur}
-											onValueChange={(e) =>
-												field.onChange(e)
-											}
-											prefix="$"
-											ref={field.ref}
-											useGrouping={false}
-											value={field.value}
-										/>
-									</>
+									<InputNumber
+										id={field.name}
+										inputClassName={classNames({
+											'p-invalid': fieldState.invalid
+										})}
+										maxFractionDigits={2}
+										minFractionDigits={2}
+										onBlur={field.onBlur}
+										onValueChange={(e) => field.onChange(e)}
+										prefix="$"
+										ref={field.ref}
+										useGrouping={false}
+										value={field.value}
+									/>
 								)}
 							/>
 							<label

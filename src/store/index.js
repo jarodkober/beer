@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
 import { beersApi } from './apis/beersApi';
+import { breweriesApi } from './apis/breweriesApi';
 import { stylesApi } from './apis/stylesApi';
 import { cellarsApi } from './apis/cellarsApi';
 
@@ -8,13 +9,15 @@ export const store = configureStore({
 	middleware: (getDefaultMiddleware) => {
 		return getDefaultMiddleware()
 			.concat(beersApi.middleware)
-			.concat(stylesApi.middleware)
-			.concat(cellarsApi.middleware);
+			.concat(breweriesApi.middleware)
+			.concat(cellarsApi.middleware)
+			.concat(stylesApi.middleware);
 	},
 	reducer: {
 		[beersApi.reducerPath]: beersApi.reducer,
-		[stylesApi.reducerPath]: stylesApi.reducer,
-		[cellarsApi.reducerPath]: cellarsApi.reducer
+		[breweriesApi.reducerPath]: breweriesApi.reducer,
+		[cellarsApi.reducerPath]: cellarsApi.reducer,
+		[stylesApi.reducerPath]: stylesApi.reducer
 	}
 });
 
@@ -27,7 +30,7 @@ export {
 	useGetBeersByUserQuery
 } from './apis/beersApi';
 
-export { useGetStylesQuery } from './apis/stylesApi';
+export { useGetBreweriesQuery } from './apis/breweriesApi';
 
 export {
 	useAddCellarMutation,
@@ -35,3 +38,5 @@ export {
 	useGetCellarsByUserQuery,
 	useUpdateCellarMutation
 } from './apis/cellarsApi';
+
+export { useGetStylesQuery } from './apis/stylesApi';
