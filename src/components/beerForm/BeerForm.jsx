@@ -219,6 +219,7 @@ function BeerForm({ onHide, toast, user }) {
 										className={classNames({
 											'p-invalid': fieldState.error
 										})}
+										filter
 										id={field.name}
 										onChange={(e) =>
 											field.onChange(e.value)
