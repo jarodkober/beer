@@ -4,6 +4,7 @@ import {
 	useAddBeerMutation,
 	useGetBreweriesQuery,
 	useGetCellarsByUserQuery,
+	useGetSizesQuery,
 	useGetStylesQuery
 } from '../../store';
 import { Button } from 'primereact/button';
@@ -26,7 +27,7 @@ function BeerForm({ onHide, toast, user }) {
 		beer_abv: '',
 		beer_name: '',
 		beer_quantity: '',
-		beer_size: '',
+		beer_size_id: '',
 		beer_style: '',
 		beer_vintage: '',
 		brewery_id: '',
@@ -55,6 +56,14 @@ function BeerForm({ onHide, toast, user }) {
 	} = useGetCellarsByUserQuery({
 		user_auth: user.signInUserSession.idToken.jwtToken,
 		user_id: user.username
+	});
+
+	const {
+		data: sizesData,
+		error: sizesError,
+		isLoading: sizesIsLoading
+	} = useGetSizesQuery({
+		user_auth: user.signInUserSession.idToken.jwtToken
 	});
 
 	const {
@@ -119,6 +128,16 @@ function BeerForm({ onHide, toast, user }) {
 	});
 
 	useEffect(() => {
+		sizesError &&
+			toast.current.show({
+				detail: 'An error occurred while loading the beer sizes. Please try again.',
+				severity: 'error',
+				sticky: true,
+				summary: 'Error'
+			});
+	});
+
+	useEffect(() => {
 		stylesError &&
 			toast.current.show({
 				detail: 'An error occurred while loading the beer styles. Please try again.',
@@ -130,7 +149,10 @@ function BeerForm({ onHide, toast, user }) {
 
 	return (
 		<div className={styles.beerForm}>
-			{breweriesIsLoading || cellarsIsLoading || stylesIsLoading ? (
+			{breweriesIsLoading ||
+			cellarsIsLoading ||
+			sizesIsLoading ||
+			stylesIsLoading ? (
 				<div>{skeleton}</div>
 			) : (
 				<form onSubmit={handleSubmit(onSubmit)}>
@@ -362,19 +384,21 @@ function BeerForm({ onHide, toast, user }) {
 					<div className="field">
 						<span className="p-float-label">
 							<Controller
-								name="beer_size"
+								name="beer_size_id"
 								control={control}
 								rules={{}}
 								render={({ field, fieldState }) => (
-									<InputNumber
-										id={field.name}
-										inputClassName={classNames({
-											'p-invalid': fieldState.invalid
+									<Dropdown
+										className={classNames({
+											'p-invalid': fieldState.error
 										})}
-										onBlur={field.onBlur}
-										onValueChange={(e) => field.onChange(e)}
-										ref={field.ref}
-										suffix=" ml"
+										id={field.name}
+										onChange={(e) =>
+											field.onChange(e.value)
+										}
+										optionLabel="beer_size_name"
+										optionValue="beer_size_id"
+										options={sizesData}
 										value={field.value}
 									/>
 								)}
@@ -383,13 +407,13 @@ function BeerForm({ onHide, toast, user }) {
 								className={classNames({
 									'p-error': errors.name
 								})}
-								htmlFor="beer_size"
+								htmlFor="beer_size_id"
 							>
 								Size
 							</label>
 						</span>
 
-						{getFormErrorMessage('beer_size')}
+						{getFormErrorMessage('beer_size_id')}
 					</div>
 
 					<div className="field">

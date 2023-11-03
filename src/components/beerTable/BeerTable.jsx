@@ -122,8 +122,9 @@ function BeerTable({ toast, user }) {
 				/>
 				<Column
 					body={isLoading && skeletonContent}
-					field="beer_size"
-					header="Size (ml)"
+					field="beer_size_name"
+					filter
+					header="Size"
 					sortable
 				/>
 				<Column

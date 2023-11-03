@@ -16,7 +16,7 @@ const beersApi = createApi({
 							beer_cost: beer.beer_cost,
 							beer_name: beer.beer_name,
 							beer_quantity: beer.beer_quantity,
-							beer_size: beer.beer_size,
+							beer_size_id: beer.beer_size_id,
 							beer_style_id: beer.beer_style_id,
 							beer_vintage: beer.beer_vintage,
 							brewery_id: beer.brewery_id,
