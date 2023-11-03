@@ -4,6 +4,8 @@ import { useGetBreweriesQuery } from '../../store';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import { Skeleton } from 'primereact/skeleton';
+import BreweryForm from '../breweryForm/BreweryForm';
+import ModalTriggerButton from '../modalTriggerButton/ModalTriggerButton';
 
 function BreweryTable({ toast, user }) {
 	BreweryTable.propTypes = {
@@ -25,6 +27,12 @@ function BreweryTable({ toast, user }) {
 	const header = (
 		<div>
 			<h1>Breweries</h1>
+			<ModalTriggerButton
+				buttonLabel="Add Brewery"
+				modalBodyComponent={<BreweryForm toast={toast} />}
+				modalHeader="Add a Brewery"
+				user={user}
+			/>
 		</div>
 	);
 

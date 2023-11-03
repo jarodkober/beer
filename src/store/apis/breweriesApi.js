@@ -7,7 +7,23 @@ const breweriesApi = createApi({
 	reducerPath: 'breweries',
 	endpoints(builder) {
 		return {
+			addBrewery: builder.mutation({
+				invalidatesTags: ['Breweries'],
+				query: (brewery) => {
+					return {
+						body: {
+							brewery_name: brewery.brewery_name
+						},
+						headers: {
+							Authorization: brewery.user_auth
+						},
+						method: 'POST',
+						url: '/breweries'
+					};
+				}
+			}),
 			getBreweries: builder.query({
+				providesTags: ['Breweries'],
 				query: (user) => {
 					return {
 						headers: {
@@ -22,6 +38,6 @@ const breweriesApi = createApi({
 	}
 });
 
-export const { useGetBreweriesQuery } = breweriesApi;
+export const { useAddBreweryMutation, useGetBreweriesQuery } = breweriesApi;
 
 export { breweriesApi };

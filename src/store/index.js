@@ -30,7 +30,10 @@ export {
 	useGetBeersByUserQuery
 } from './apis/beersApi';
 
-export { useGetBreweriesQuery } from './apis/breweriesApi';
+export {
+	useAddBreweryMutation,
+	useGetBreweriesQuery
+} from './apis/breweriesApi';
 
 export {
 	useAddCellarMutation,
