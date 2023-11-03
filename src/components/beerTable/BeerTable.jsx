@@ -54,7 +54,7 @@ function BeerTable({ toast, user }) {
 			toast.current.show({
 				severity: 'error',
 				summary: 'Error',
-				detail: 'Error loading beers.',
+				detail: 'An error occurred while loading your beers. Please try again.',
 				sticky: true
 			});
 	}, [error, toast]);
