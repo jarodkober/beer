@@ -6,7 +6,7 @@ import { Controller, useForm } from 'react-hook-form';
 import classNames from 'classnames';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
-import { InputTextarea } from 'primereact/InputTextarea';
+import { InputTextarea } from 'primereact/inputtextarea';
 
 function CellarForm({ onHide, toast, user }) {
 	CellarForm.propTypes = {
