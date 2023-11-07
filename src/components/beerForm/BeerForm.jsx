@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import styles from './BeerForm.module.scss';
 import {
-	useAddBeerMutation,
+	useAddBeerToCellarMutation,
 	useGetBreweriesQuery,
 	useGetCellarsByUserQuery,
 	useGetSizesQuery,
@@ -74,9 +74,15 @@ function BeerForm({ onHide, toast, user }) {
 		user_auth: user.signInUserSession.idToken.jwtToken
 	});
 
-	const [addBeer, results] = useAddBeerMutation();
+	const [addBeer, results] = useAddBeerToCellarMutation();
 
 	const onSubmit = (data) => {
+		data = {
+			...data,
+			user_auth: user.signInUserSession.idToken.jwtToken,
+			user_id: user.username
+		};
+
 		addBeer(data);
 
 		reset();

@@ -7,7 +7,7 @@ const beersApi = createApi({
 	reducerPath: 'beers',
 	endpoints(builder) {
 		return {
-			addBeer: builder.mutation({
+			addBeerToCellar: builder.mutation({
 				invalidatesTags: ['Beers'],
 				query: (beer) => {
 					return {
@@ -22,8 +22,11 @@ const beersApi = createApi({
 							brewery_id: beer.brewery_id,
 							cellar_id: beer.cellar_id
 						},
+						headers: {
+							Authorization: beer.user_auth
+						},
 						method: 'POST',
-						url: '/beers'
+						url: `/user/${beer.user_id}/beers`
 					};
 				}
 			}),
@@ -66,7 +69,7 @@ const beersApi = createApi({
 });
 
 export const {
-	useAddBeerMutation,
+	useAddBeerToCellarMutation,
 	useDrinkBeerMutation,
 	useGetBeersQuery,
 	useGetBeersByUserQuery
