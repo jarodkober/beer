@@ -43,15 +43,6 @@ const beersApi = createApi({
 					};
 				}
 			}),
-			getBeers: builder.query({
-				providesTags: ['Beers'],
-				query: () => {
-					return {
-						method: 'GET',
-						url: '/beers'
-					};
-				}
-			}),
 			getBeersByUser: builder.query({
 				providesTags: ['Beers'],
 				query: (user) => {
@@ -71,7 +62,6 @@ const beersApi = createApi({
 export const {
 	useAddBeerToCellarMutation,
 	useDrinkBeerMutation,
-	useGetBeersQuery,
 	useGetBeersByUserQuery
 } = beersApi;
 export { beersApi };
