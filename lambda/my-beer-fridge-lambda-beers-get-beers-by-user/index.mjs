@@ -21,9 +21,11 @@ export const handler = async (event) => {
 		resourceArn: process.env.DATABASE_CLUSTER_ARN,
 		secretArn: process.env.DATABASE_CREDENTIALS_SECRETS_STORE_ARN,
 		sql: `SELECT 
+				beer_cellars.beer_cellars_id,
 				beer_cellars.beer_cost,
 				beer_cellars.beer_id,
 				beer_cellars.beer_quantity,
+				beer_cellars.beer_quantity_consumed,
 				beer_cellars.cellar_id,
 				beer_sizes.beer_size_name,
 				beer_styles.beer_style,

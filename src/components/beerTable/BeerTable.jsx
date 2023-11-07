@@ -27,9 +27,11 @@ function BeerTable({ toast, user }) {
 		return (
 			<BeerTableDrinkButton
 				disabled={beer.beer_quantity < 1}
-				id={beer.id}
-				key={beer.id}
-				quantity={beer.beer_quantity}
+				beer_cellars_id={beer.beer_cellars_id}
+				key={beer.beer_cellars_id}
+				beer_quantity={beer.beer_quantity}
+				beer_quantity_consumed={beer.beer_quantity_consumed}
+				user={user}
 			></BeerTableDrinkButton>
 		);
 	};
