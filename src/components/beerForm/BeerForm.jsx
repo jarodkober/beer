@@ -25,6 +25,7 @@ function BeerForm({ onHide, toast, user }) {
 
 	const defaultValues = {
 		beer_abv: '',
+		beer_cost: '',
 		beer_name: '',
 		beer_quantity: '',
 		beer_size_id: '',
