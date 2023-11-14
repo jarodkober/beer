@@ -55,7 +55,7 @@ function BeerTable({ toast, user }) {
 			toast.current.show({
 				severity: 'error',
 				summary: 'Error',
-				detail: 'An error occurred while loading your beers. Please try again.',
+				detail: 'An error occurred while loading your beers. This is most likely due to a cost-saving measure that pauses the database during periods of inactivity. Please try again in 30 seconds.',
 				sticky: true
 			});
 	}, [error, toast]);

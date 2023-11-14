@@ -117,7 +117,7 @@ function BeerForm({ onHide, toast, user }) {
 	useEffect(() => {
 		breweriesError &&
 			toast.current.show({
-				detail: 'An error occurred while loading the breweries. Please try again.',
+				detail: 'An error occurred while loading the breweries. This is most likely due to a cost-saving measure that pauses the database during periods of inactivity. Please try again in 30 seconds.',
 				severity: 'error',
 				sticky: true,
 				summary: 'Error'
@@ -127,7 +127,7 @@ function BeerForm({ onHide, toast, user }) {
 	useEffect(() => {
 		cellarsError &&
 			toast.current.show({
-				detail: 'An error occurred while loading your cellars. Please try again.',
+				detail: 'An error occurred while loading your cellars. This is most likely due to a cost-saving measure that pauses the database during periods of inactivity. Please try again in 30 seconds.',
 				severity: 'error',
 				sticky: true,
 				summary: 'Error'
@@ -137,7 +137,7 @@ function BeerForm({ onHide, toast, user }) {
 	useEffect(() => {
 		sizesError &&
 			toast.current.show({
-				detail: 'An error occurred while loading the beer sizes. Please try again.',
+				detail: 'An error occurred while loading the beer sizes. This is most likely due to a cost-saving measure that pauses the database during periods of inactivity. Please try again in 30 seconds.',
 				severity: 'error',
 				sticky: true,
 				summary: 'Error'
@@ -147,7 +147,7 @@ function BeerForm({ onHide, toast, user }) {
 	useEffect(() => {
 		stylesError &&
 			toast.current.show({
-				detail: 'An error occurred while loading the beer styles. Please try again.',
+				detail: 'An error occurred while loading the beer styles. This is most likely due to a cost-saving measure that pauses the database during periods of inactivity. Please try again in 30 seconds.',
 				severity: 'error',
 				sticky: true,
 				summary: 'Error'

@@ -39,7 +39,7 @@ function BreweryTable({ toast, user }) {
 	useEffect(() => {
 		error &&
 			toast.current.show({
-				detail: 'An error occurred while loading the breweries. Please try again.',
+				detail: 'An error occurred while loading the breweries. This is most likely due to a cost-saving measure that pauses the database during periods of inactivity. Please try again in 30 seconds.',
 				severity: 'error',
 				sticky: true,
 				summary: 'Error'

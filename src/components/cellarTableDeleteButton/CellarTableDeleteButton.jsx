@@ -24,7 +24,7 @@ function CellarTableDeleteButton({ cellar_id, toast, user }) {
 	useEffect(() => {
 		results.error &&
 			toast.current.show({
-				detail: 'An error occurred while deleting your cellar. Please try again.',
+				detail: 'An error occurred while deleting your cellar. This is most likely due to a cost-saving measure that pauses the database during periods of inactivity. Please try again in 30 seconds.',
 				severity: 'error',
 				sticky: true,
 				summary: 'Error'
