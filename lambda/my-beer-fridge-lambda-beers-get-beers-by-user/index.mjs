@@ -27,6 +27,7 @@ export const handler = async (event) => {
 				beer_cellars.beer_quantity,
 				beer_cellars.beer_quantity_consumed,
 				beer_cellars.cellar_id,
+				beer_sizes.beer_size_id,
 				beer_sizes.beer_size_name,
 				beer_styles.beer_style,
 				beers.beer_abv,

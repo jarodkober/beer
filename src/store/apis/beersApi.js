@@ -30,28 +30,6 @@ const beersApi = createApi({
 					};
 				}
 			}),
-			drinkBeer: builder.mutation({
-				invalidatesTags: ['Beers'],
-				query: ({
-					beer_cellars_id,
-					beer_quantity,
-					beer_quantity_consumed,
-					user_auth,
-					user_id
-				}) => {
-					return {
-						body: {
-							beer_quantity,
-							beer_quantity_consumed
-						},
-						headers: {
-							Authorization: user_auth
-						},
-						method: 'PATCH',
-						url: `/user/${user_id}/beers/${beer_cellars_id}`
-					};
-				}
-			}),
 			getBeersByUser: builder.query({
 				providesTags: ['Beers'],
 				query: (user) => {
@@ -63,6 +41,34 @@ const beersApi = createApi({
 						url: `/user/${user.user_id}/beers`
 					};
 				}
+			}),
+			updateBeerInCellar: builder.mutation({
+				invalidatesTags: ['Beers'],
+				query: ({
+					beer_cellars_id,
+					beer_cost,
+					beer_quantity,
+					beer_quantity_consumed,
+					beer_size_id,
+					cellar_id,
+					user_auth,
+					user_id
+				}) => {
+					return {
+						body: {
+							beer_cost,
+							beer_quantity,
+							beer_quantity_consumed,
+							beer_size_id,
+							cellar_id
+						},
+						headers: {
+							Authorization: user_auth
+						},
+						method: 'PATCH',
+						url: `/user/${user_id}/beers/${beer_cellars_id}`
+					};
+				}
 			})
 		};
 	}
@@ -70,7 +76,7 @@ const beersApi = createApi({
 
 export const {
 	useAddBeerToCellarMutation,
-	useDrinkBeerMutation,
+	useUpdateBeerInCellarMutation,
 	useGetBeersByUserQuery
 } = beersApi;
 export { beersApi };

@@ -28,9 +28,12 @@ function BeerTable({ toast, user }) {
 			<BeerTableDrinkButton
 				disabled={beer.beer_quantity < 1}
 				beer_cellars_id={beer.beer_cellars_id}
+				beer_cost={parseFloat(beer.beer_cost)}
 				key={beer.beer_cellars_id}
 				beer_quantity={beer.beer_quantity}
 				beer_quantity_consumed={beer.beer_quantity_consumed}
+				beer_size_id={beer.beer_size_id}
+				cellar_id={beer.cellar_id}
 				user={user}
 			></BeerTableDrinkButton>
 		);
