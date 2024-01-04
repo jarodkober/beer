@@ -12,13 +12,13 @@ export const handler = async (event) => {
 			{
 				name: 'beer_abv',
 				value: {
-					longValue: event.beer_abv
+					doubleValue: event.beer_abv
 				}
 			},
 			{
 				name: 'beer_cost',
 				value: {
-					longValue: event.beer_cost
+					doubleValue: event.beer_cost
 				}
 			},
 			{
