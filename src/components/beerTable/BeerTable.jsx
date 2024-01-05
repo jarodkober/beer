@@ -1,8 +1,12 @@
 import { useEffect } from 'react';
 import { PropTypes } from 'prop-types';
-import { useGetBeersByUserQuery } from '../../store';
+import {
+	useGetBeersByUserQuery,
+	useUpdateBeerInCellarMutation
+} from '../../store';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
+import { InputText } from 'primereact/inputtext';
 import { Skeleton } from 'primereact/skeleton';
 import BeerForm from '../beerForm/BeerForm';
 import BeerTableDrinkButton from '../beerTableDrinkButton/BeerTableDrinkButton';
@@ -18,6 +22,8 @@ function BeerTable({ toast, user }) {
 		user_auth: user.signInUserSession.idToken.jwtToken,
 		user_id: user.username
 	});
+
+	const [updateBeerInCellar, results] = useUpdateBeerInCellarMutation();
 
 	const skeletonContent = () => {
 		return <Skeleton height="1rem"></Skeleton>;
@@ -51,6 +57,30 @@ function BeerTable({ toast, user }) {
 		</div>
 	);
 
+	const onRowEditComplete = (e) => {
+		updateBeerInCellar({
+			beer_cellars_id: e.data.beer_cellars_id,
+			beer_cost: e.newData.beer_cost,
+			beer_quantity: e.newData.beer_quantity,
+			beer_quantity_consumed: e.newData.beer_quantity_consumed,
+			beer_size_id: e.newData.beer_size_id,
+			cellar_id: e.newData.cellar_id,
+			user_auth: user.signInUserSession.idToken.jwtToken,
+			user_id: user.username
+		});
+	};
+
+	const textEditor = (options) => {
+		return (
+			<InputText
+				onChange={(e) => options.editorCallback(e.target.value)}
+				required="true"
+				type="text"
+				value={options.value}
+			/>
+		);
+	};
+
 	const skeletonRows = Array.from({ length: 25 }, (v, i) => i);
 
 	useEffect(() => {
@@ -63,11 +93,23 @@ function BeerTable({ toast, user }) {
 			});
 	}, [error, toast]);
 
+	useEffect(() => {
+		results.error &&
+			toast.current.show({
+				detail: 'An error occurred while editing your beer. This is most likely due to a cost-saving measure that pauses the database during periods of inactivity. Please try again in 30 seconds.',
+				severity: 'error',
+				sticky: true,
+				summary: 'Error'
+			});
+	}, [results.error, toast]);
+
 	return (
 		<section>
 			<DataTable
+				editMode="row"
 				filterDisplay="row"
 				header={header}
+				onRowEditComplete={onRowEditComplete}
 				scrollable
 				scrollHeight="flex"
 				sortMode="multiple"
@@ -134,16 +176,23 @@ function BeerTable({ toast, user }) {
 				/>
 				<Column
 					body={isLoading && skeletonContent}
+					editor={(options) => textEditor(options)}
 					field="beer_cost"
 					header="Cost"
 					sortable
 				/>
 				<Column
 					body={isLoading && skeletonContent}
+					editor={(options) => textEditor(options)}
 					field="beer_quantity"
 					header="Qty"
 					sortable
 				/>
+				<Column
+					bodyStyle={{ textAlign: 'center' }}
+					headerStyle={{ width: '2%' }}
+					rowEditor
+				></Column>
 				<Column
 					body={editTemplate}
 					field="edit_buttons"
