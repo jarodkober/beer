@@ -5,9 +5,10 @@ import { PiBeerStein } from 'react-icons/pi';
 import { NavLink } from 'react-router-dom';
 import { Button } from 'primereact/button';
 
-function Header({ signOut }) {
+function Header({ signOut, user }) {
 	Header.propTypes = {
-		signOut: PropTypes.func
+		signOut: PropTypes.func,
+		user: PropTypes.object
 	};
 
 	const [showMobileNavMenu, setShowMobileNavMenu] = useState(false);
@@ -75,6 +76,23 @@ function Header({ signOut }) {
 							Cellars
 						</NavLink>
 					</li>
+					{user.signInUserSession.idToken.payload[
+						'cognito:groups'
+					]?.includes(
+						import.meta.env.VITE_AWS_USER_GROUP_BEER_ADMIN
+					) && (
+						<li>
+							<NavLink
+								onClick={() => {
+									showMobileNavMenu &&
+										setShowMobileNavMenu(false);
+								}}
+								to="/admin"
+							>
+								Admin
+							</NavLink>
+						</li>
+					)}
 					<li>
 						<Button
 							label="Sign Out"

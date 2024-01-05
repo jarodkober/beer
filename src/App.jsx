@@ -10,6 +10,7 @@ import {
 import '@aws-amplify/ui-react/styles.css';
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
+import AdminPage from './pages/AdminPage';
 import BeerPage from './pages/BeerPage';
 import BreweryPage from './pages/BreweryPage';
 import CellarPage from './pages/CellarPage';
@@ -34,7 +35,10 @@ function App() {
 				{({ signOut, user }) => (
 					<Router>
 						<div className="container">
-							<Header signOut={signOut} />
+							<Header
+								signOut={signOut}
+								user={user}
+							/>
 							<main>
 								<Routes>
 									<Route
@@ -46,6 +50,16 @@ function App() {
 										}
 										exact
 										path="/"
+									></Route>
+									<Route
+										element={
+											<AdminPage
+												toast={toast}
+												user={user}
+											/>
+										}
+										exact
+										path="/admin"
 									></Route>
 									<Route
 										element={
