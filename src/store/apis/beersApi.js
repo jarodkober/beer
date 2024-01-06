@@ -30,6 +30,18 @@ const beersApi = createApi({
 					};
 				}
 			}),
+			getBeers: builder.query({
+				providesTags: ['Beers'],
+				query: (user) => {
+					return {
+						headers: {
+							Authorization: user.user_auth
+						},
+						method: 'GET',
+						url: `/beers`
+					};
+				}
+			}),
 			getBeersByUser: builder.query({
 				providesTags: ['Beers'],
 				query: (user) => {
@@ -77,6 +89,7 @@ const beersApi = createApi({
 export const {
 	useAddBeerToCellarMutation,
 	useUpdateBeerInCellarMutation,
+	useGetBeersQuery,
 	useGetBeersByUserQuery
 } = beersApi;
 export { beersApi };

@@ -29,6 +29,7 @@ setupListeners(store.dispatch);
 export {
 	useAddBeerToCellarMutation,
 	useUpdateBeerInCellarMutation,
+	useGetBeersQuery,
 	useGetBeersByUserQuery
 } from './apis/beersApi';
 

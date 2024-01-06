@@ -1,7 +1,9 @@
 import { PropTypes } from 'prop-types';
+import AdminBeerTable from '../components/adminBeerTable/AdminBeerTable';
 
-function AdminPage({ user }) {
+function AdminPage({ toast, user }) {
 	AdminPage.propTypes = {
+		toast: PropTypes.object,
 		user: PropTypes.object
 	};
 
@@ -10,7 +12,10 @@ function AdminPage({ user }) {
 			{user.signInUserSession.idToken.payload['cognito:groups']?.includes(
 				import.meta.env.VITE_AWS_USER_GROUP_BEER_ADMIN
 			) ? (
-				<div>Admin Page</div>
+				<AdminBeerTable
+					toast={toast}
+					user={user}
+				/>
 			) : (
 				<div>You do not have permission to access this page.</div>
 			)}
