@@ -4,6 +4,7 @@ import { useGetBeersQuery } from '../../store';
 import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import { Skeleton } from 'primereact/skeleton';
+import AdminBeerTableDeleteButton from '../adminBeerTableDeleteButton/AdminBeerTableDeleteButton';
 
 function AdminBeerTable({ toast, user }) {
 	AdminBeerTable.propTypes = {
@@ -26,6 +27,17 @@ function AdminBeerTable({ toast, user }) {
 			<h1>Beer Administration</h1>
 		</div>
 	);
+
+	const deleteTemplate = (beer) => {
+		return (
+			<AdminBeerTableDeleteButton
+				beer_id={beer.beer_id}
+				key={beer.beer_id}
+				toast={toast}
+				user={user}
+			></AdminBeerTableDeleteButton>
+		);
+	};
 
 	useEffect(() => {
 		error &&
@@ -95,6 +107,12 @@ function AdminBeerTable({ toast, user }) {
 					field="beer_verified"
 					header="Verified"
 					sortable
+				/>
+				<Column
+					body={deleteTemplate}
+					bodyStyle={{ textAlign: 'center' }}
+					headerStyle={{ width: '2%' }}
+					field="action_buttons"
 				/>
 			</DataTable>
 		</section>
