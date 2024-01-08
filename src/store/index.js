@@ -31,6 +31,7 @@ export {
 	useDeleteBeerMutation,
 	useGetBeersQuery,
 	useGetBeersByUserQuery,
+	useDeleteBeerFromCellarMutation,
 	useUpdateBeerInCellarMutation
 } from './apis/beersApi';
 

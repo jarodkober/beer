@@ -9,6 +9,7 @@ import { DataTable } from 'primereact/datatable';
 import { InputText } from 'primereact/inputtext';
 import { Skeleton } from 'primereact/skeleton';
 import BeerForm from '../beerForm/BeerForm';
+import BeerTableDeleteButton from '../beerTableDeleteButton/BeerTableDeleteButton';
 import BeerTableDrinkButton from '../beerTableDrinkButton/BeerTableDrinkButton';
 import ModalTriggerButton from '../modalTriggerButton/ModalTriggerButton';
 
@@ -68,6 +69,17 @@ function BeerTable({ toast, user }) {
 			user_auth: user.signInUserSession.idToken.jwtToken,
 			user_id: user.username
 		});
+	};
+
+	const deleteTemplate = (beer) => {
+		return (
+			<BeerTableDeleteButton
+				beer_cellars_id={beer.beer_cellars_id}
+				key={beer.beer_cellars_id}
+				toast={toast}
+				user={user}
+			></BeerTableDeleteButton>
+		);
 	};
 
 	const textEditor = (options) => {
@@ -194,8 +206,14 @@ function BeerTable({ toast, user }) {
 					rowEditor
 				></Column>
 				<Column
+					body={deleteTemplate}
+					bodyStyle={{ textAlign: 'center' }}
+					headerStyle={{ width: '2%' }}
+					field="delete_button"
+				/>
+				<Column
 					body={editTemplate}
-					field="edit_buttons"
+					field="edit_button"
 					header="Cheers!"
 				/>
 			</DataTable>

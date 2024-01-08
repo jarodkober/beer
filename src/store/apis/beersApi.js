@@ -45,6 +45,18 @@ const beersApi = createApi({
 					};
 				}
 			}),
+			deleteBeerFromCellar: builder.mutation({
+				invalidatesTags: ['Beers'],
+				query: ({ beer_cellars_id, user_auth, user_id }) => {
+					return {
+						headers: {
+							Authorization: user_auth
+						},
+						method: 'DELETE',
+						url: `/user/${user_id}/beers/${beer_cellars_id}`
+					};
+				}
+			}),
 			getBeers: builder.query({
 				providesTags: ['Beers'],
 				query: (user) => {
@@ -106,6 +118,7 @@ export const {
 	useDeleteBeerMutation,
 	useGetBeersQuery,
 	useGetBeersByUserQuery,
+	useDeleteBeerFromCellarMutation,
 	useUpdateBeerInCellarMutation
 } = beersApi;
 export { beersApi };
