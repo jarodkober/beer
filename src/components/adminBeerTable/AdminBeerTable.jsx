@@ -204,6 +204,9 @@ function AdminBeerTable({ toast, user }) {
 					body={isLoading && skeletonContent}
 					editor={(options) => textEditor(options)}
 					field="beer_abv"
+					filter
+					filterMatchMode="contains"
+					filterPlaceholder="Filter by ABV"
 					header="ABV"
 					sortable
 				/>
@@ -211,6 +214,9 @@ function AdminBeerTable({ toast, user }) {
 					body={isLoading && skeletonContent}
 					editor={(options) => textEditor(options)}
 					field="beer_verified"
+					filter
+					filterMatchMode="contains"
+					filterPlaceholder="Filter by Verification Status"
 					header="Verified"
 					sortable
 				/>
