@@ -35,6 +35,11 @@ function AdminBeerTable({ toast, user }) {
 		user_auth: user.signInUserSession.idToken.jwtToken
 	});
 
+	const verifiedData = [
+		{ beer_verified: 'false' },
+		{ beer_verified: 'true' }
+	];
+
 	const skeletonContent = () => {
 		return <Skeleton height="1rem"></Skeleton>;
 	};
@@ -103,6 +108,18 @@ function AdminBeerTable({ toast, user }) {
 				required={true}
 				type="text"
 				value={options.value}
+			/>
+		);
+	};
+
+	const verifiedEditor = (options) => {
+		return (
+			<Dropdown
+				onChange={(e) => options.editorCallback(e.value)}
+				optionLabel="beer_verified"
+				optionValue="beer_verified"
+				options={verifiedData}
+				value={options.rowData.beer_verified.toString()}
 			/>
 		);
 	};
@@ -212,7 +229,7 @@ function AdminBeerTable({ toast, user }) {
 				/>
 				<Column
 					body={isLoading && skeletonContent}
-					editor={(options) => textEditor(options)}
+					editor={(options) => verifiedEditor(options)}
 					field="beer_verified"
 					filter
 					filterMatchMode="contains"
