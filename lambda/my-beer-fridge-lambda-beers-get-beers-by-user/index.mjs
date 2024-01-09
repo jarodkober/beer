@@ -42,7 +42,7 @@ export const handler = async (event) => {
 			INNER JOIN public.breweries on beers.brewery_id = breweries.brewery_id
 			INNER JOIN public.beer_sizes on beer_cellars.beer_size_id = beer_sizes.beer_size_id
 			INNER JOIN public.beer_styles on beers.beer_style_id = beer_styles.beer_style_id
-			WHERE beer_cellars.user_id = :user_id`
+			WHERE beer_cellars.user_id = :user_id AND beer_cellars.beer_quantity > 0;`
 	};
 
 	const parseDataServiceResponse = (resp) => {
