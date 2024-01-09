@@ -81,6 +81,37 @@ const beersApi = createApi({
 					};
 				}
 			}),
+			updateBeer: builder.mutation({
+				invalidatesTags: ['Beers'],
+				query: ({
+					beer_abv,
+					beer_id,
+					beer_name,
+					beer_style_id,
+					beer_verified,
+					beer_vintage,
+					brewery_id,
+					user_auth,
+					user_id
+				}) => {
+					return {
+						body: {
+							beer_abv,
+							beer_name,
+							beer_style_id,
+							beer_verified,
+							beer_vintage,
+							brewery_id,
+							user_id
+						},
+						headers: {
+							Authorization: user_auth
+						},
+						method: 'PUT',
+						url: `/beers/${beer_id}`
+					};
+				}
+			}),
 			updateBeerInCellar: builder.mutation({
 				invalidatesTags: ['Beers'],
 				query: ({
@@ -119,6 +150,7 @@ export const {
 	useGetBeersQuery,
 	useGetBeersByUserQuery,
 	useDeleteBeerFromCellarMutation,
+	useUpdateBeerMutation,
 	useUpdateBeerInCellarMutation
 } = beersApi;
 export { beersApi };
