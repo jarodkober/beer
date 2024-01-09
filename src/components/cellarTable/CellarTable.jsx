@@ -55,7 +55,7 @@ function CellarTable({ toast, user }) {
 		return (
 			<InputText
 				onChange={(e) => options.editorCallback(e.target.value)}
-				required="true"
+				required={true}
 				type="text"
 				value={options.value}
 			/>
